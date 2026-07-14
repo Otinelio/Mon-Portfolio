@@ -30,13 +30,13 @@ function About() {
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1200&q=80"
-                alt="Portrait de Kengbo Othnelio Raphaëlo — visuel à remplacer"
+                src="/profil.jpeg"
+                alt="Portrait de Kengbo Othnelio Raphaëlo"
                 className="bw-image h-full w-full object-cover"
               />
             </div>
             <div className="mt-4 flex items-center justify-between text-xs uppercase tracking-[0.2em]" style={{ color: "var(--ink)", opacity: 0.55, fontFamily: "var(--font-mono)" }}>
-              <span>Portrait — à remplacer</span>
+              <span>Portrait</span>
               <span>01 / 01</span>
             </div>
           </div>

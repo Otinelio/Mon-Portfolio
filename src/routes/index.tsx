@@ -193,14 +193,14 @@ function AboutPreview() {
         <div className="lg:col-span-5">
           <div className="relative aspect-[4/5] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1200&q=80"
-              alt="Portrait — emplacement à remplacer"
+              src="/profil.jpeg"
+              alt="Portrait de Kengbo Othnelio Raphaëlo"
               className="bw-image h-full w-full object-cover"
             />
             <div className="absolute -bottom-6 -right-6 h-40 w-32 border-l-2 border-t-2" style={{ borderColor: "var(--lime)" }} />
           </div>
           <p className="mt-6 text-xs uppercase tracking-[0.2em]" style={{ color: "var(--ink)", opacity: 0.5, fontFamily: "var(--font-mono)" }}>
-            Portrait — visuel à remplacer
+            Portrait de Kengbo Othnelio Raphaëlo
           </p>
         </div>
         <div className="lg:col-span-7">
