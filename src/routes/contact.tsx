@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, MessageCircle, Linkedin } from "lucide-react";
+import { ArrowUpRight, Mail, MessageCircle, Linkedin, Phone, Github } from "lucide-react";
 import { useDeclareSectionTheme } from "@/hooks/useSectionTheme";
 import { SplitReveal } from "@/components/SectionReveal";
 import { Footer } from "@/routes/index";
 
-const EMAIL = "{{EMAIL}}"; // placeholder
-const WHATSAPP = "{{WHATSAPP}}";
-const LINKEDIN = "{{LINKEDIN}}";
+const EMAIL = "kengboothnelioraphaelo@gmail.com";
+const PHONE = "+228 98 47 27 01 / +228 72 95 75 62";
+const WHATSAPP = "https://wa.me/qr/R4TYNXD7NT2WP1";
+const LINKEDIN = "https://www.linkedin.com/in/othnelio-kengbo?utm_source=share_via&utm_content=profile&utm_medium=member_android";
+const GITHUB = "https://github.com/otinelio";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -75,12 +77,11 @@ function Contact() {
               <p className="eyebrow mb-3" style={{ color: "var(--ember)" }}>Contact direct</p>
               <ul className="flex flex-col gap-4">
                 <DirectLink icon={Mail} label="Email" value={EMAIL} href={`mailto:${EMAIL}`} />
-                <DirectLink icon={MessageCircle} label="WhatsApp" value={WHATSAPP} href={`https://wa.me/${WHATSAPP}`} />
-                <DirectLink icon={Linkedin} label="LinkedIn" value={LINKEDIN} href={LINKEDIN} />
+                <DirectLink icon={Phone} label="Téléphone" value={PHONE} href="tel:+22898472701" />
+                <DirectLink icon={MessageCircle} label="WhatsApp" value="Cliquez ici" href={WHATSAPP} />
+                <DirectLink icon={Linkedin} label="LinkedIn" value="Othnelio Kengbo" href={LINKEDIN} />
+                <DirectLink icon={Github} label="GitHub" value="otinelio" href={GITHUB} />
               </ul>
-              <p className="mt-6 text-xs uppercase tracking-[0.2em]" style={{ color: "var(--ink)", opacity: 0.5, fontFamily: "var(--font-mono)" }}>
-                Placeholders — remplacer par les vrais liens.
-              </p>
             </div>
             <div className="border-t border-ink/20 pt-6">
               <p className="eyebrow mb-3" style={{ color: "var(--ember)" }}>Localisation</p>

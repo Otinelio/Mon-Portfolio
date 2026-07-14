@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Kengbo Othnelio Raphaëlo — Développeur Web et Mobile Full Stack · DigitalVision" },
-      { name: "description", content: "Portfolio du développeur full-stack Kengbo Othnelio Raphaëlo, fondateur de DigitalVision à Lomé." },
+      { name: "description", content: "Portfolio du développeur full-stack Kengbo Othnelio Raphaëlo, cofondateur de DigitalVision à Lomé." },
       { property: "og:title", content: "Kengbo Othnelio Raphaëlo — DigitalVision" },
       { property: "og:description", content: "Expériences web et mobile sur-mesure pour l'hôtellerie, la restauration et le commerce." },
       { property: "og:url", content: "/" },
@@ -164,8 +164,10 @@ function MagneticLink({ to, children }: { to: string; children: React.ReactNode 
 }
 
 function StatsStrip() {
+  const ref = useRef<HTMLElement>(null);
+  useDeclareSectionTheme(ref, "ink");
   return (
-    <section className="relative border-y border-white/10 py-24" style={{ backgroundColor: "var(--ink)" }}>
+    <section ref={ref} className="relative border-y border-white/10 py-24" style={{ backgroundColor: "var(--ink)" }}>
       <div className="grid grid-cols-1 gap-12 px-6 md:grid-cols-3 lg:px-24">
         {stats.map((s, i) => (
           <SectionReveal key={i} delay={i * 0.1}>
@@ -211,7 +213,7 @@ function AboutPreview() {
             <SplitReveal text="déjà prolifique." />
           </h2>
           <p className="max-w-xl text-lg leading-relaxed" style={{ color: "var(--ink)", opacity: 0.75 }}>
-            Fondateur de DigitalVision (Dvision), je traduis l'identité d'une marque en présence digitale entièrement sur-mesure — jamais un template. React, Supabase, Framer Motion : mes outils pour livrer, du concept au déploiement.
+            Cofondateur de DigitalVision (Dvision), je traduis l'identité d'une marque en présence digitale entièrement sur-mesure — jamais un template. React, Supabase, Framer Motion : mes outils pour livrer, du concept au déploiement.
           </p>
           <Link
             to="/about"
@@ -227,11 +229,11 @@ function AboutPreview() {
 }
 
 const contactLinks = [
-  { icon: Mail, label: "Email", value: "contact@digitalvision.tg", href: "mailto:contact@digitalvision.tg" },
-  { icon: Phone, label: "Téléphone", value: "+228 XX XX XX XX", href: "tel:+228XXXXXXXX" },
-  { icon: MessageCircle, label: "WhatsApp", value: "+228 XX XX XX XX", href: "https://wa.me/228XXXXXXXX" },
-  { icon: Linkedin, label: "LinkedIn", value: "Kengbo Othnelio", href: "https://linkedin.com/in/" },
-  { icon: Github, label: "GitHub", value: "othnelio", href: "https://github.com/othnelio" },
+  { icon: Mail, label: "Email", value: "kengboothnelioraphaelo@gmail.com", href: "mailto:kengboothnelioraphaelo@gmail.com" },
+  { icon: Phone, label: "Téléphone", value: "+228 98 47 27 01 / +228 72 95 75 62", href: "tel:+22898472701" },
+  { icon: MessageCircle, label: "WhatsApp", value: "Cliquez ici", href: "https://wa.me/qr/R4TYNXD7NT2WP1" },
+  { icon: Linkedin, label: "LinkedIn", value: "Othnelio Kengbo", href: "https://www.linkedin.com/in/othnelio-kengbo?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+  { icon: Github, label: "GitHub", value: "otinelio", href: "https://github.com/otinelio" },
 ];
 
 function FooterContactLink({ icon: Icon, label, value, href }: { icon: typeof Mail; label: string; value: string; href: string }) {
@@ -250,13 +252,13 @@ function FooterContactLink({ icon: Icon, label, value, href }: { icon: typeof Ma
         {label}
       </span>
       <span
-        className="relative text-xs tracking-[0.12em] uppercase transition-colors group-hover:text-[color:var(--lime)]"
+        className="relative text-xs tracking-[0.12em] uppercase transition-colors group-hover:text-[color:var(--ember)]"
         style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}
       >
         {value}
         <span
           className="absolute bottom-0 left-0 h-[1px] w-full origin-left scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-          style={{ backgroundColor: "var(--lime)" }}
+          style={{ backgroundColor: "var(--ember)" }}
         />
       </span>
     </a>
@@ -274,53 +276,55 @@ export function Footer() {
       className="relative flex min-h-[90vh] flex-col justify-between overflow-hidden"
       style={{ backgroundColor: "var(--ink)" }}
     >
-      {/* ── Zone 1 : Geste principal ── */}
-      <div className="flex flex-1 flex-col justify-center px-6 pt-32 pb-24 lg:px-24">
-        <h2 className="display-hero max-w-7xl" style={{ color: "var(--paper)" }}>
-          <SplitReveal text="Construisons" />
-          <br />
-          <SplitReveal text="quelque chose." />
-        </h2>
-        <div className="mt-14">
-          <Link
-            to="/contact"
-            ref={linkRef}
-            onMouseMove={(e) => {
-              const el = linkRef.current;
-              if (!el) return;
-              const r = el.getBoundingClientRect();
-              const x = (e.clientX - r.left - r.width / 2) * 0.2;
-              const y = (e.clientY - r.top - r.height / 2) * 0.2;
-              el.style.transform = `translate(${x}px, ${y}px)`;
-            }}
-            onMouseLeave={() => {
-              if (linkRef.current) linkRef.current.style.transform = "translate(0,0)";
-            }}
-            className="group inline-flex items-center gap-3 border-b-2 pb-1 text-lg md:text-xl transition-colors"
-            style={{
-              color: "var(--lime)",
-              borderColor: "var(--lime)",
-              fontFamily: "var(--font-mono)",
-              letterSpacing: "0.05em",
-            }}
-          >
-            Discutons
-            <ArrowUpRight
-              size={20}
-              strokeWidth={1.5}
-              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            />
-          </Link>
+      <div className="flex flex-1 flex-col lg:flex-row w-full max-w-[1800px] mx-auto">
+        {/* ── Zone 1 : Geste principal ── */}
+        <div className="flex flex-1 flex-col justify-center px-6 pt-32 pb-16 lg:pb-24 lg:px-24">
+          <h2 className="display-hero max-w-4xl" style={{ color: "var(--paper)" }}>
+            <SplitReveal text="Construisons" />
+            <br />
+            <SplitReveal text="quelque chose." />
+          </h2>
+          <div className="mt-14">
+            <Link
+              to="/contact"
+              ref={linkRef}
+              onMouseMove={(e) => {
+                const el = linkRef.current;
+                if (!el) return;
+                const r = el.getBoundingClientRect();
+                const x = (e.clientX - r.left - r.width / 2) * 0.2;
+                const y = (e.clientY - r.top - r.height / 2) * 0.2;
+                el.style.transform = `translate(${x}px, ${y}px)`;
+              }}
+              onMouseLeave={() => {
+                if (linkRef.current) linkRef.current.style.transform = "translate(0,0)";
+              }}
+              className="group inline-flex items-center gap-3 border-b-2 pb-1 text-lg md:text-xl transition-colors"
+              style={{
+                color: "var(--ember)",
+                borderColor: "var(--ember)",
+                fontFamily: "var(--font-mono)",
+                letterSpacing: "0.05em",
+              }}
+            >
+              Discutons
+              <ArrowUpRight
+                size={20}
+                strokeWidth={1.5}
+                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </Link>
+          </div>
         </div>
-      </div>
 
-      {/* ── Zone 2 : Contact liste ── */}
-      <div className="border-t border-white/8 px-6 py-16 lg:px-24">
-        <nav className="flex flex-col gap-1">
-          {contactLinks.map((link) => (
-            <FooterContactLink key={link.label} {...link} />
-          ))}
-        </nav>
+        {/* ── Zone 2 : Contact liste ── */}
+        <div className="flex flex-1 flex-col justify-center border-t border-white/8 lg:border-t-0 lg:border-l px-6 py-16 lg:pl-12 lg:pr-6 xl:pl-20">
+          <nav className="flex flex-col gap-2 w-full max-w-2xl mx-auto lg:mx-0">
+            {contactLinks.map((link) => (
+              <FooterContactLink key={link.label} {...link} />
+            ))}
+          </nav>
+        </div>
       </div>
 
       {/* ── Zone 3 : Ligne de fermeture ── */}
@@ -334,15 +338,15 @@ export function Footer() {
                 style={{ color: "var(--paper)", opacity: 0.45, fontFamily: "var(--font-mono)" }}
               >
                 <span>Disponible pour</span>
-                <span style={{ color: "var(--lime)", opacity: 1 }}>·</span>
+                <span style={{ color: "var(--ember)", opacity: 1 }}>·</span>
                 <span>Web</span>
-                <span style={{ color: "var(--lime)", opacity: 1 }}>·</span>
+                <span style={{ color: "var(--ember)", opacity: 1 }}>·</span>
                 <span>Mobile</span>
-                <span style={{ color: "var(--lime)", opacity: 1 }}>·</span>
+                <span style={{ color: "var(--ember)", opacity: 1 }}>·</span>
                 <span>Branding</span>
-                <span style={{ color: "var(--lime)", opacity: 1 }}>·</span>
+                <span style={{ color: "var(--ember)", opacity: 1 }}>·</span>
                 <span>Consulting</span>
-                <span style={{ color: "var(--lime)", opacity: 1 }}>·</span>
+                <span style={{ color: "var(--ember)", opacity: 1 }}>·</span>
               </span>
             ))}
           </div>

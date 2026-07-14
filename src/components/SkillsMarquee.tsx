@@ -1,9 +1,13 @@
 import { marqueeSkills } from "@/config/skills";
+import { useRef } from "react";
+import { useDeclareSectionTheme } from "@/hooks/useSectionTheme";
 
 export function SkillsMarquee() {
   const row = [...marqueeSkills, ...marqueeSkills];
+  const ref = useRef<HTMLElement>(null);
+  useDeclareSectionTheme(ref, "ink");
   return (
-    <section className="relative overflow-hidden border-y border-white/10 py-10" style={{ backgroundColor: "var(--ink)" }}>
+    <section ref={ref} className="relative overflow-hidden border-y border-white/10 py-10" style={{ backgroundColor: "var(--ink)" }}>
       <div className="marquee-track-left flex shrink-0 gap-12 whitespace-nowrap">
         {row.map((s, i) => (
           <MarqueeItem key={`a${i}`} label={s} />

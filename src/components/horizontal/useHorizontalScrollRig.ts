@@ -16,6 +16,8 @@ export function useHorizontalScrollRig(
   progress: MotionValue<number>;
   isPinned: boolean;
   wrapperHeight: string;
+  scrollNext: () => void;
+  scrollPrev: () => void;
 } {
   const { travelPerItem = 380, overscan = 1 } = opts;
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -55,5 +57,21 @@ export function useHorizontalScrollRig(
       ? `${viewportH + itemCount * travelPerItem * overscan}px`
       : "auto";
 
-  return { wrapperRef, trackRef, x: xString, progress: scrollYProgress, isPinned, wrapperHeight };
+  const scrollNext = () => {
+    if (isPinned) {
+      window.scrollBy({ top: window.innerWidth * 0.6, behavior: "smooth" });
+    } else if (trackRef.current) {
+      trackRef.current.scrollBy({ left: window.innerWidth * 0.6, behavior: "smooth" });
+    }
+  };
+
+  const scrollPrev = () => {
+    if (isPinned) {
+      window.scrollBy({ top: -window.innerWidth * 0.6, behavior: "smooth" });
+    } else if (trackRef.current) {
+      trackRef.current.scrollBy({ left: -window.innerWidth * 0.6, behavior: "smooth" });
+    }
+  };
+
+  return { wrapperRef, trackRef, x: xString, progress: scrollYProgress, isPinned, wrapperHeight, scrollNext, scrollPrev };
 }

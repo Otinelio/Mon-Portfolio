@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef } from "react";
-import { HorizontalTimeline } from "@/components/HorizontalTimeline";
+import { ResumeSection } from "@/components/ResumeSection";
 import { SkillsGallery } from "@/components/horizontal/SkillsGallery";
 import { SectionReveal, SplitReveal } from "@/components/SectionReveal";
 import { useDeclareSectionTheme } from "@/hooks/useSectionTheme";
@@ -10,9 +10,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "À propos — Kengbo Othnelio Raphaëlo · DigitalVision" },
-      { name: "description", content: "Développeur web & mobile full-stack basé à Lomé, fondateur de DigitalVision. Trois ans d'expérience, dix projets livrés." },
+      { name: "description", content: "Développeur web & mobile full-stack basé à Lomé, cofondateur de DigitalVision. Trois ans d'expérience, dix projets livrés." },
       { property: "og:title", content: "À propos — Kengbo Othnelio Raphaëlo" },
-      { property: "og:description", content: "L'histoire du studio DigitalVision et de son fondateur." },
+      { property: "og:description", content: "L'histoire du studio DigitalVision et de son cofondateur." },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -49,7 +49,7 @@ function About() {
             </h1>
             <SectionReveal>
               <p className="max-w-2xl text-xl leading-relaxed" style={{ color: "var(--ink)", opacity: 0.85 }}>
-                Développeur web & mobile full-stack, fondateur de DigitalVision (Dvision) à Lomé. Maîtrise React, React Router, Tailwind, Framer Motion, Supabase.
+                Développeur web & mobile full-stack, cofondateur de DigitalVision (Dvision) à Lomé. Maîtrise React, React Router, Tailwind, Framer Motion, Supabase.
               </p>
             </SectionReveal>
             <SectionReveal delay={0.2}>
@@ -69,7 +69,7 @@ function About() {
         </div>
       </section>
 
-      <HorizontalTimeline />
+      <ResumeSection />
       <SkillsGallery />
       <Footer />
     </main>

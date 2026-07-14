@@ -61,7 +61,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Kengbo Othnelio Raphaëlo — Développeur Web & Mobile · DigitalVision" },
-      { name: "description", content: "Portfolio de Kengbo Othnelio Raphaëlo, développeur web & mobile full-stack basé à Lomé. Fondateur du studio DigitalVision (Dvision)." },
+      { name: "description", content: "Portfolio de Kengbo Othnelio Raphaëlo, développeur web & mobile full-stack basé à Lomé. Cofondateur du studio DigitalVision (Dvision)." },
       { name: "author", content: "Kengbo Othnelio Raphaëlo" },
       { property: "og:site_name", content: "DigitalVision" },
       { property: "og:type", content: "website" },

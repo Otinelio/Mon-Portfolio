@@ -8,34 +8,41 @@ export const skillCategories: SkillCategory[] = [
   {
     key: "languages",
     label: "Langages",
-    items: ["JavaScript", "TypeScript", "PHP", "Python"],
+    items: ["PHP", "JavaScript", "Dart"],
   },
   {
     key: "frameworks",
-    label: "Frameworks & Libs",
-    items: ["React", "React Router v6", "Tailwind CSS", "Framer Motion", "Node.js"],
+    label: "Frameworks & Technologies",
+    items: ["Laravel", "Flutter", "Bootstrap", "React"],
+  },
+  {
+    key: "databases",
+    label: "Bases de données",
+    items: ["MySQL", "PostgreSQL", "Supabase", "Firebase"],
   },
   {
     key: "tools",
-    label: "Outils & Plateformes",
-    items: ["Supabase", "Vercel", "Git / GitHub", "Figma"],
+    label: "Outils & autres",
+    items: ["Git", "GitHub", "Postman", "Figma", "Outils d'IA", "Vercel"],
   },
   {
-    key: "others",
-    label: "Autres",
+    key: "assets",
+    label: "Atouts",
     items: [
-      "UI / UX Design",
-      "SEO & Performance Web",
-      "Intégration WhatsApp Business",
-      "Développement Mobile-first",
+      "Esprit d'analyse",
+      "Résolution de problèmes",
+      "Autonomie",
+      "Rigueur",
+      "Travail en équipe",
+      "Apprentissage continu"
     ],
   },
 ];
 
 export const marqueeSkills = [
-  "React", "TypeScript", "Tailwind", "Framer Motion", "Supabase", "Node.js",
-  "Vercel", "Figma", "PHP", "Python", "JavaScript", "React Router",
-  "PostgreSQL", "REST", "WhatsApp API", "Git", "SEO", "Realtime",
+  "PHP", "JavaScript", "Dart", "Laravel", "Flutter", "Bootstrap", "React",
+  "MySQL", "PostgreSQL", "Supabase", "Firebase", "Git", "GitHub",
+  "Postman", "Figma", "Outils d'IA", "Vercel",
 ];
 
 export const stats = [
@@ -44,10 +51,51 @@ export const stats = [
   { value: 100, suffix: "%", label: "Clients satisfaits" },
 ];
 
-export const timeline = [
-  { year: "2022", title: "Premières lignes", body: "Débuts en développement web, focus JavaScript et React." },
-  { year: "2023", title: "Premiers clients", body: "Livraison des premiers sites hospitalité à Lomé." },
-  { year: "2024", title: "DigitalVision", body: "Lancement de l'agence Dvision, structuration du studio." },
-  { year: "2025", title: "Temps réel", body: "Passage aux applications temps-réel avec Supabase." },
-  { year: "2026", title: "Aujourd'hui", body: "10+ projets livrés, focus qualité éditoriale et sur-mesure." },
+export const experiences = [
+  {
+    company: "DigitalVision",
+    role: "Développeur Backend & Cofondateur",
+    period: "2025 – 2026",
+    tasks: [
+      "Développement d'API REST avec Laravel",
+      "Conception d'architectures backend",
+      "Développement de solutions web sur mesure",
+      "Participation aux choix techniques"
+    ]
+  },
+  {
+    company: "Otinelio",
+    role: "Développeur Full Stack",
+    period: "2024 – 2025",
+    tasks: [
+      "Développement de sites web pour restaurants et hôtels",
+      "Intégration de systèmes de commande via QR Code",
+      "Réalisation de sites vitrines premium",
+      "Projets : Beefcut, Togoliving, Harmonie Signature, La Huqqa..."
+    ]
+  },
+  {
+    company: "Projet académique",
+    role: "Développeur Laravel",
+    period: "2025",
+    tasks: [
+      "Développement d'une plateforme e-commerce",
+      "Gestion des produits, commandes et utilisateurs",
+      "Conception de la base de données"
+    ]
+  }
+];
+
+export const formations = [
+  {
+    year: "2025",
+    title: "Formation en Développement Web & Mobile",
+    institution: "DTechGroup (Togo)",
+  },
+  {
+    year: "2024 – 2025",
+    title: "Parcours d'autoformation en développement web",
+    institution: "OpenClassrooms",
+    details: "HTML5/CSS3, JavaScript, PHP, MySQL, React, Git/GitHub et Linux"
+  }
 ];

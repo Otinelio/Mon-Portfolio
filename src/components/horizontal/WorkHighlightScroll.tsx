@@ -2,41 +2,59 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useHorizontalScrollRig } from "./useHorizontalScrollRig";
 import { projects } from "@/config/projects";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { useDeclareSectionTheme } from "@/hooks/useSectionTheme";
 
 export function WorkHighlightScroll() {
   const rig = useHorizontalScrollRig(projects.length, { travelPerItem: 280 });
+  const ref = useRef<HTMLElement>(null);
+  useDeclareSectionTheme(ref, "ink");
 
   return (
-    <section className="relative" style={{ backgroundColor: "var(--ink)" }}>
-      <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-24">
-        <div>
-          <p className="eyebrow mb-4" style={{ color: "var(--lime)" }}>
-            Sélection — {String(projects.length).padStart(2, "0")}
-          </p>
-          <h2 className="display-section" style={{ color: "var(--paper)" }}>
-            Projets sélectionnés
-          </h2>
-        </div>
-        <Link
-          to="/projets"
-          className="hidden items-center gap-2 text-xs uppercase tracking-[0.2em] md:flex"
-          style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}
-        >
-          Tout voir <ArrowUpRight size={16} strokeWidth={1.5} />
-        </Link>
-      </div>
-
+    <section ref={ref} className="relative" style={{ backgroundColor: "var(--ink)" }}>
       <div ref={rig.wrapperRef} style={{ height: rig.wrapperHeight }} className="relative">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <div className="absolute left-0 right-0 top-0 h-px" style={{ backgroundColor: "rgba(247,246,243,0.1)" }}>
-            <motion.div className="h-full origin-left" style={{ backgroundColor: "var(--lime)", scaleX: rig.progress }} />
+        <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+          
+          <div className="flex shrink-0 items-end justify-between px-6 pb-10 pt-24 lg:px-24">
+            <div>
+              <p className="eyebrow mb-4" style={{ color: "var(--lime)" }}>
+                Sélection — {String(projects.length).padStart(2, "0")}
+              </p>
+              <h2 className="display-section" style={{ color: "var(--paper)" }}>
+                Projets sélectionnés
+              </h2>
+            </div>
+            
+            <div className="flex items-center gap-6">
+              <div className="flex gap-2">
+                <button onClick={rig.scrollPrev} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[color:var(--paper)] transition-colors hover:border-[color:var(--lime)] hover:bg-[color:var(--lime)] hover:text-[color:var(--ink)]" aria-label="Défiler à gauche">
+                  <ArrowLeft size={16} />
+                </button>
+                <button onClick={rig.scrollNext} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[color:var(--paper)] transition-colors hover:border-[color:var(--lime)] hover:bg-[color:var(--lime)] hover:text-[color:var(--ink)]" aria-label="Défiler à droite">
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+
+              <Link
+                to="/projets"
+                className="group hidden items-center gap-2 text-xs uppercase tracking-[0.2em] md:flex transition-colors hover:text-[color:var(--lime)]"
+                style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}
+              >
+                Tout voir <ArrowUpRight size={16} strokeWidth={1.5} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            </div>
           </div>
-          <motion.div
-            ref={rig.trackRef}
-            className={rig.isPinned ? "flex h-full items-center gap-6 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 py-16"}
-            style={rig.isPinned ? { x: rig.x, willChange: "transform" } : undefined}
-          >
+
+          <div className="relative flex flex-1 flex-col justify-center">
+            <div className="absolute left-0 right-0 top-0 h-px" style={{ backgroundColor: "rgba(247,246,243,0.1)" }}>
+              <motion.div className="h-full origin-left" style={{ backgroundColor: "var(--lime)", scaleX: rig.progress }} />
+            </div>
+            <motion.div
+              ref={rig.trackRef}
+              className={rig.isPinned ? "flex items-center gap-6 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 py-16"}
+              style={rig.isPinned ? { x: rig.x, willChange: "transform" } : undefined}
+            >
             {projects.map((p) => (
               <Link
                 key={p.slug}
@@ -63,6 +81,7 @@ export function WorkHighlightScroll() {
               </h3>
             </Link>
           </motion.div>
+          </div>
         </div>
       </div>
     </section>

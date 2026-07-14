@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -95,7 +97,10 @@
     color: var(--ink);
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     font-weight: 900;
     letter-spacing: -0.03em;
@@ -116,11 +121,12 @@
 }
 
 @utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(0.75rem, 1.2vw, 1rem);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
+  font-style: italic;
 }
 
 @utility display-hero {
@@ -148,6 +154,7 @@
   filter: grayscale(1) contrast(1.15);
   transition: filter 500ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .bw-hover-ember:hover {
   filter: grayscale(0.5) contrast(1.1) sepia(0.35) hue-rotate(-20deg) saturate(1.4);
   transform: scale(1.03);
@@ -160,25 +167,48 @@
 @utility no-scrollbar {
   scrollbar-width: none;
 }
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 /* Marquee keyframes */
 @keyframes marquee-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
+
 @keyframes marquee-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
-.marquee-track-left { animation: marquee-left 40s linear infinite; }
-.marquee-track-right { animation: marquee-right 40s linear infinite; }
+
+.marquee-track-left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.marquee-track-right {
+  animation: marquee-right 40s linear infinite;
+}
 
 @keyframes underline-draw {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
