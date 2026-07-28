@@ -45,11 +45,11 @@ function About() {
             <h1 className="display-hero mb-10" style={{ color: "var(--ink)" }}>
               <SplitReveal text="Kengbo" />
               <br />
-              <SplitReveal text="Othnelio." />
+              <SplitReveal text="Othnelio Raphaëlo" />
             </h1>
             <SectionReveal>
               <p className="max-w-2xl text-xl leading-relaxed" style={{ color: "var(--ink)", opacity: 0.85 }}>
-                Développeur web & mobile full-stack, cofondateur de DigitalVision (Dvision) à Lomé. Maîtrise React, React Router, Tailwind, Framer Motion, Supabase.
+                Développeur web & mobile full-stack, cofondateur de DigitalVision à Lomé. Maîtrise Laravel, React, Bootstrap, Firebase, SQL, Supabase, JavaScript, Git/GitHub, Figma et bien d'autres.
               </p>
             </SectionReveal>
             <SectionReveal delay={0.2}>
