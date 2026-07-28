@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useHorizontalScrollRig } from "./useHorizontalScrollRig";
 import { skillCategories } from "@/config/skills";
 import { useDeclareSectionTheme } from "@/hooks/useSectionTheme";
+import { SectionReveal, SplitReveal } from "@/components/SectionReveal";
 
 type GalleryItem = 
   | { type: 'header', cat: string, index: number }
@@ -36,11 +37,15 @@ export function SkillsGallery() {
           
           <div className="flex shrink-0 items-end justify-between px-6 pb-8 pt-24 lg:px-24">
             <div>
-              <p className="eyebrow mb-4" style={{ color: "var(--ember)" }}>Compétences</p>
-              <h2 className="display-hero" style={{ color: "var(--ink)" }}>Ce que je fais.</h2>
+              <SectionReveal delay={0.1}>
+                <p className="eyebrow mb-4" style={{ color: "var(--ember)" }}>Compétences</p>
+              </SectionReveal>
+              <h2 className="display-hero" style={{ color: "var(--ink)" }}>
+                <SplitReveal text="Ce que je fais." onMount={true} />
+              </h2>
             </div>
             
-            <div className="flex items-center gap-6">
+            <SectionReveal delay={0.3} className="flex items-center gap-6">
               <div className="flex gap-2">
                 <button onClick={rig.scrollPrev} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à gauche">
                   <ArrowLeft size={16} />
@@ -49,7 +54,7 @@ export function SkillsGallery() {
                   <ArrowRight size={16} />
                 </button>
               </div>
-            </div>
+            </SectionReveal>
           </div>
 
           <div className="relative flex flex-1 flex-col justify-center">

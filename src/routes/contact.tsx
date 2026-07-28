@@ -47,7 +47,16 @@ function Contact() {
               Disponible pour un nouveau projet
             </div>
             <h1 className="display-hero mb-12" style={{ color: "var(--ink)" }}>
-              <SplitReveal text="Discutons." />
+              <span className="inline-block overflow-hidden align-baseline" style={{ lineHeight: 0.95 }}>
+                <motion.span
+                  initial={{ y: "110%" }}
+                  animate={{ y: "0%" }}
+                  transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-block"
+                >
+                  Discu<span style={{ color: "var(--lime)" }}>t</span>ons.
+                </motion.span>
+              </span>
             </h1>
 
             <form

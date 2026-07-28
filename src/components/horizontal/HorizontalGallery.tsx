@@ -57,7 +57,6 @@ export function HorizontalGallery() {
             {filtered.map((p) => (
               <ProjectCard key={p.slug} project={p} />
             ))}
-            <SeeAllCard />
           </motion.div>
         </div>
       </div>
@@ -107,17 +106,3 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-function SeeAllCard() {
-  return (
-    <Link
-      to="/projets"
-      className="group flex h-[70vh] w-[50vw] shrink-0 flex-col items-start justify-end gap-6 border border-white/15 p-8 md:w-[36vw] lg:w-[26vw]"
-    >
-      <span className="eyebrow" style={{ color: "var(--lime)" }}>→ Voir</span>
-      <h3 className="display-section" style={{ color: "var(--paper)", fontSize: "clamp(1.6rem, 2.4vw, 2.4rem)" }}>
-        Tous les projets
-      </h3>
-      <ArrowUpRight size={40} strokeWidth={1.5} style={{ color: "var(--paper)" }} />
-    </Link>
-  );
-}

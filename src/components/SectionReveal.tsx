@@ -16,7 +16,7 @@ export function SectionReveal({
     <motion.div
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
+      viewport={{ once: false, margin: "-10%" }}
       transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
@@ -52,7 +52,7 @@ export function SplitReveal({
             initial={{ y: "110%" }}
             {...(onMount
               ? { animate: { y: "0%" } }
-              : { whileInView: { y: "0%" }, viewport: { once: true, margin: "-10%" } })}
+              : { whileInView: { y: "0%" }, viewport: { once: false, margin: "-10%" } })}
             transition={{ duration: 0.75, delay: delayBase + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
             className="inline-block"
           >

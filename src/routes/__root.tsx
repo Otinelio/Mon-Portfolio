@@ -6,7 +6,8 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { LoadingScreen } from "@/components/LoadingScreen";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -103,10 +104,24 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   useSmoothScroll();
+  const [isFirstVisit, setIsFirstVisit] = useState(() => {
+    // Only show loading screen on first visit in this session
+    if (typeof window !== "undefined") {
+      return !sessionStorage.getItem("kor-loaded");
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isFirstVisit) {
+      sessionStorage.setItem("kor-loaded", "1");
+    }
+  }, [isFirstVisit]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <SectionThemeProvider>
+        {isFirstVisit && <LoadingScreen />}
         <VerticalNavbar />
         <MobileNavButton />
         <PageTransition>

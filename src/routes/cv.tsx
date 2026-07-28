@@ -19,7 +19,7 @@ export const Route = createFileRoute("/cv")({
 
 function CvPage() {
   const ref = useRef<HTMLDivElement>(null);
-  useDeclareSectionTheme(ref, "paper");
+  useDeclareSectionTheme(ref, "ink");
   return (
     <div ref={ref}>
       <CvViewer />

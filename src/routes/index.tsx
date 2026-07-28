@@ -301,8 +301,8 @@ export function Footer() {
               }}
               className="group inline-flex items-center gap-3 border-b-2 pb-1 text-lg md:text-xl transition-colors"
               style={{
-                color: "var(--ember)",
-                borderColor: "var(--ember)",
+                color: "var(--lime)",
+                borderColor: "var(--lime)",
                 fontFamily: "var(--font-mono)",
                 letterSpacing: "0.05em",
               }}

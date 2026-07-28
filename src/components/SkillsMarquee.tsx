@@ -1,6 +1,7 @@
 import { marqueeSkills } from "@/config/skills";
 import { useRef } from "react";
 import { useDeclareSectionTheme } from "@/hooks/useSectionTheme";
+import { SectionReveal } from "@/components/SectionReveal";
 
 export function SkillsMarquee() {
   const row = [...marqueeSkills, ...marqueeSkills];
@@ -8,16 +9,18 @@ export function SkillsMarquee() {
   useDeclareSectionTheme(ref, "ink");
   return (
     <section ref={ref} className="relative overflow-hidden border-y border-white/10 py-10" style={{ backgroundColor: "var(--ink)" }}>
-      <div className="marquee-track-left flex shrink-0 gap-12 whitespace-nowrap">
-        {row.map((s, i) => (
-          <MarqueeItem key={`a${i}`} label={s} />
-        ))}
-      </div>
-      <div className="marquee-track-right mt-6 flex shrink-0 gap-12 whitespace-nowrap">
-        {[...row].reverse().map((s, i) => (
-          <MarqueeItem key={`b${i}`} label={s} muted />
-        ))}
-      </div>
+      <SectionReveal>
+        <div className="marquee-track-left flex shrink-0 gap-12 whitespace-nowrap">
+          {row.map((s, i) => (
+            <MarqueeItem key={`a${i}`} label={s} />
+          ))}
+        </div>
+        <div className="marquee-track-right mt-6 flex shrink-0 gap-12 whitespace-nowrap">
+          {[...row].reverse().map((s, i) => (
+            <MarqueeItem key={`b${i}`} label={s} muted />
+          ))}
+        </div>
+      </SectionReveal>
     </section>
   );
 }
