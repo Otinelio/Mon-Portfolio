@@ -1,14 +1,14 @@
-import { a as __toESM } from "../_runtime.mjs";
-import { i as AnimatePresence, r as motion } from "../_libs/framer-motion.mjs";
+import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react, t as QueryClientProvider } from "../_libs/react+tanstack__react-query.mjs";
 import { r as useSectionTheme, t as SectionThemeProvider } from "./useSectionTheme-sAEUATbs.mjs";
+import { i as AnimatePresence, r as motion } from "../_libs/framer-motion.mjs";
 import { _ as useRouter, c as HeadContent, d as createRouter, f as Outlet, g as Link, h as createRootRouteWithContext, l as useLocation, m as createFileRoute, p as lazyRouteComponent, s as Scripts } from "../_libs/@tanstack/react-router+[...].mjs";
-import { c as House, d as FileText, n as Sparkles, o as Mail, t as User, u as FolderGit2 } from "../_libs/lucide-react.mjs";
-import { n as Route$7 } from "./routes-DgKvGHkC.mjs";
-import { r as projects } from "./projects-Ux56nw6G.mjs";
-import { t as Route$8 } from "./projets._slug-Cg9TUx1M.mjs";
+import { a as Sparkles, d as House, i as User, l as Mail, m as FileText, p as FolderGit2 } from "../_libs/lucide-react.mjs";
+import { n as Route$7 } from "./routes-Cevld2U2.mjs";
+import { r as projects } from "./projects-DzKDpMo3.mjs";
+import { t as Route$8 } from "./projets._slug-t6PHA6Kx.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CSyh9Cfc.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-BftYajnl.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function LoadingScreen() {
@@ -330,7 +330,7 @@ function LoadingScreen() {
 		]
 	}, "loading-screen") });
 }
-var styles_default = "/assets/styles-BOi7xx7h.css";
+var styles_default = "/assets/styles-BvxWVfvm.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -879,8 +879,8 @@ var Route$6 = createRootRouteWithContext()({
 			},
 			{
 				rel: "icon",
-				href: "/favicon.ico",
-				type: "image/x-icon"
+				href: "/favicon.png",
+				type: "image/png"
 			},
 			{
 				rel: "preconnect",
@@ -1009,7 +1009,7 @@ var Route$3 = createFileRoute("/cv")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./contact-B8owEqVT.mjs");
+var $$splitComponentImporter$2 = () => import("./contact-zJEeoeBO.mjs");
 var Route$2 = createFileRoute("/contact")({
 	head: () => ({
 		meta: [
@@ -1038,7 +1038,7 @@ var Route$2 = createFileRoute("/contact")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-var $$splitComponentImporter$1 = () => import("./about-DZ_7igf4.mjs");
+var $$splitComponentImporter$1 = () => import("./about-C6soicCJ.mjs");
 var Route$1 = createFileRoute("/about")({
 	head: () => ({
 		meta: [
@@ -1067,7 +1067,7 @@ var Route$1 = createFileRoute("/about")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-var $$splitComponentImporter = () => import("./projets.index-B4Am7sD2.mjs");
+var $$splitComponentImporter = () => import("./projets.index-C_b_zHrK.mjs");
 var Route = createFileRoute("/projets/")({
 	head: () => ({
 		meta: [

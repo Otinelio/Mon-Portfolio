@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/projects-Ux56nw6G.js
+//#region node_modules/.nitro/vite/services/ssr/assets/projects-DzKDpMo3.js
 var projects = [
 	{
 		slug: "la-huqqa",
@@ -6,7 +6,7 @@ var projects = [
 		title: "La HuQQa",
 		client: "La HuQQa (Restaurant-Café)",
 		year: "2024",
-		tags: ["Web", "Mobile"],
+		tags: ["Web"],
 		stack: [
 			"React 18",
 			"TypeScript",
@@ -48,7 +48,7 @@ var projects = [
 		title: "TOGOLIVING",
 		client: "Résidence TOGOLIVING (Villa balnéaire, Lomé, Togo)",
 		year: "2024 – 2025",
-		tags: ["Web", "Mobile"],
+		tags: ["Web"],
 		stack: [
 			"React 19",
 			"TanStack Start",
@@ -108,7 +108,7 @@ var projects = [
 		title: "La Playa Beach Resort",
 		client: "Resort hôtelier & restaurant en bord de mer",
 		year: "2025 – 2026",
-		tags: ["Web", "Mobile"],
+		tags: ["Web"],
 		stack: [
 			"React 19",
 			"TanStack Start",
@@ -235,7 +235,7 @@ var projects = [
 		title: "Beefcut Grillhouse",
 		client: "Restaurant Grillhouse (Lomé, Togo)",
 		year: "2025",
-		tags: ["Web", "Mobile"],
+		tags: ["Web"],
 		stack: [
 			"React 19",
 			"Vite 8",
@@ -286,7 +286,7 @@ var projects = [
 		title: "Hotel Riviera Ramatou Plage",
 		client: "Hotel Riviera Ramatou Plage (Lomé, Togo)",
 		year: "2026",
-		tags: ["Web", "Mobile"],
+		tags: ["Web"],
 		stack: [
 			"React 19",
 			"TanStack Start",

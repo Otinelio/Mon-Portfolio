@@ -1,13 +1,13 @@
-import { a as __toESM } from "../_runtime.mjs";
-import { n as useScroll, r as motion, t as useTransform } from "../_libs/framer-motion.mjs";
+import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { n as useDeclareSectionTheme } from "./useSectionTheme-sAEUATbs.mjs";
+import { n as useScroll, r as motion, t as useTransform } from "../_libs/framer-motion.mjs";
 import { n as SplitReveal, t as SectionReveal } from "./SectionReveal-Dh2Gx0rf.mjs";
-import { g as ArrowLeft, h as ArrowRight } from "../_libs/lucide-react.mjs";
-import { t as Footer } from "./routes-DgKvGHkC.mjs";
-import { i as skillCategories, n as formations, t as experiences } from "./skills-B1VqC62l.mjs";
-import { t as useHorizontalScrollRig } from "./useHorizontalScrollRig-BPmGxn71.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/about-DZ_7igf4.js
+import { b as ArrowRight, x as ArrowLeft } from "../_libs/lucide-react.mjs";
+import { t as Footer } from "./routes-Cevld2U2.mjs";
+import { i as skillCategories, n as formations, t as experiences } from "./skills-COmj2d8v.mjs";
+import { t as useHorizontalScrollRig } from "./useHorizontalScrollRig-lcp0tcPt.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/about-C6soicCJ.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function ResumeSection() {
@@ -111,13 +111,13 @@ function ResumeSection() {
 													},
 													children: exp.role
 												}),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 													className: "mt-2 text-xl font-medium",
 													style: {
 														color: "var(--paper)",
 														opacity: .8
 													},
-													children: ["chez ", exp.company]
+													children: exp.company === "Projet académique" ? exp.company : `chez ${exp.company}`
 												}),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
 													className: `mt-8 flex flex-col gap-5 ${isEven ? "lg:items-start" : "lg:items-end"}`,
@@ -286,7 +286,7 @@ function SkillsGallery() {
 			style: { height: rig.wrapperHeight },
 			className: "relative",
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "sticky top-0 flex h-screen flex-col overflow-hidden",
+				className: rig.isPinned ? "sticky top-0 flex h-screen flex-col overflow-hidden" : "flex flex-col",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "flex shrink-0 items-end justify-between px-6 pb-8 pt-24 lg:px-24",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionReveal, {
@@ -306,7 +306,7 @@ function SkillsGallery() {
 					})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionReveal, {
 						delay: .3,
 						className: "flex items-center gap-6",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						children: rig.isPinned && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex gap-2",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								onClick: rig.scrollPrev,
@@ -335,18 +335,20 @@ function SkillsGallery() {
 						})
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.div, {
 						ref: rig.trackRef,
-						className: rig.isPinned ? "flex items-center gap-3 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 py-16",
+						className: rig.isPinned ? "flex items-center gap-3 px-6 lg:px-24" : "flex flex-col gap-4 px-6 pb-16 w-full",
 						style: rig.isPinned ? {
 							x: rig.x,
 							willChange: "transform"
 						} : void 0,
 						children: galleryItems.map((it) => it.type === "header" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CategoryHeaderCapsule, {
 							category: it.cat,
-							index: it.index
+							index: it.index,
+							isPinned: rig.isPinned
 						}, it.index) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SkillCapsule, {
 							label: it.label,
 							category: it.cat,
-							index: it.index
+							index: it.index,
+							isPinned: rig.isPinned
 						}, it.index))
 					})]
 				})]
@@ -354,9 +356,9 @@ function SkillsGallery() {
 		})
 	});
 }
-function SkillCapsule({ label, category, index }) {
+function SkillCapsule({ label, category, index, isPinned = true }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "group flex h-40 w-56 shrink-0 flex-col justify-between border border-ink/15 p-5 transition-colors hover:border-[color:var(--lime)]",
+		className: `group flex h-40 shrink-0 flex-col justify-between border border-ink/15 p-5 transition-colors hover:border-[color:var(--lime)] ${isPinned ? "w-56" : "w-full"}`,
 		style: { backgroundColor: "var(--paper)" },
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "flex items-start justify-between",
@@ -386,9 +388,9 @@ function SkillCapsule({ label, category, index }) {
 		})]
 	});
 }
-function CategoryHeaderCapsule({ category, index }) {
+function CategoryHeaderCapsule({ category, index, isPinned = true }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "group relative flex h-40 w-80 shrink-0 flex-col justify-end overflow-hidden border transition-all duration-500 hover:-translate-y-1 hover:border-[color:var(--lime)] hover:shadow-[0_20px_40px_-15px_rgba(212,255,63,0.3)]",
+		className: `group relative flex h-40 shrink-0 flex-col justify-end overflow-hidden border transition-all duration-500 hover:-translate-y-1 hover:border-[color:var(--lime)] hover:shadow-[0_20px_40px_-15px_rgba(212,255,63,0.3)] ${isPinned ? "w-80" : "w-full"}`,
 		style: {
 			backgroundColor: "var(--ink)",
 			borderColor: "transparent",
@@ -468,7 +470,7 @@ function About() {
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SplitReveal, { text: "Kengbo" }),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("br", {}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SplitReveal, { text: "Othnelio." })
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SplitReveal, { text: "Othnelio Raphaëlo" })
 							]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionReveal, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -477,7 +479,7 @@ function About() {
 								color: "var(--ink)",
 								opacity: .85
 							},
-							children: "Développeur web & mobile full-stack, cofondateur de DigitalVision (Dvision) à Lomé. Maîtrise React, React Router, Tailwind, Framer Motion, Supabase."
+							children: "Développeur web & mobile full-stack, cofondateur de DigitalVision à Lomé. Maîtrise Laravel, React, Bootstrap, Firebase, SQL, Supabase, JavaScript, Git/GitHub, Figma et bien d'autres."
 						}) }),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionReveal, {
 							delay: .2,

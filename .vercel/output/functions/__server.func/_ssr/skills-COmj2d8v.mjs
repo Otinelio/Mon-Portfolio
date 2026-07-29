@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/skills-B1VqC62l.js
+//#region node_modules/.nitro/vite/services/ssr/assets/skills-COmj2d8v.js
 var skillCategories = [
 	{
 		key: "languages",
@@ -94,7 +94,7 @@ var experiences = [
 	{
 		company: "DigitalVision",
 		role: "Développeur Backend & Cofondateur",
-		period: "2025 – 2026",
+		period: "2024 - 2026",
 		tasks: [
 			"Développement d'API REST avec Laravel",
 			"Conception d'architectures backend",
@@ -103,9 +103,9 @@ var experiences = [
 		]
 	},
 	{
-		company: "Otinelio",
+		company: "DigitalVision",
 		role: "Développeur Full Stack",
-		period: "2024 – 2025",
+		period: "2025 - 2026",
 		tasks: [
 			"Développement de sites web pour restaurants et hôtels",
 			"Intégration de systèmes de commande via QR Code",
@@ -116,7 +116,7 @@ var experiences = [
 	{
 		company: "Projet académique",
 		role: "Développeur Laravel",
-		period: "2025",
+		period: "2024 - 2025",
 		tasks: [
 			"Développement d'une plateforme e-commerce",
 			"Gestion des produits, commandes et utilisateurs",

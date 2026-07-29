@@ -1,18 +1,19 @@
-import { a as __toESM } from "../_runtime.mjs";
-import { n as useScroll, r as motion, t as useTransform } from "../_libs/framer-motion.mjs";
+import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { n as useDeclareSectionTheme } from "./useSectionTheme-sAEUATbs.mjs";
+import { n as useScroll, r as motion, t as useTransform } from "../_libs/framer-motion.mjs";
 import { n as SplitReveal, t as SectionReveal } from "./SectionReveal-Dh2Gx0rf.mjs";
 import { g as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as MapPin, g as ArrowLeft, h as ArrowRight, i as MessageCircle, l as Github, m as ArrowUpRight, o as Mail, r as Phone, s as Linkedin } from "../_libs/lucide-react.mjs";
-import { a as stats, i as skillCategories, r as marqueeSkills } from "./skills-B1VqC62l.mjs";
-import { t as useHorizontalScrollRig } from "./useHorizontalScrollRig-BPmGxn71.mjs";
-import { r as projects } from "./projects-Ux56nw6G.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-B0xM0tXP.js
+import { b as ArrowRight, c as MapPin, f as Github, l as Mail, o as Phone, s as MessageCircle, u as Linkedin, x as ArrowLeft, y as ArrowUpRight } from "../_libs/lucide-react.mjs";
+import { a as stats, i as skillCategories, r as marqueeSkills } from "./skills-COmj2d8v.mjs";
+import { t as useHorizontalScrollRig } from "./useHorizontalScrollRig-lcp0tcPt.mjs";
+import { r as projects } from "./projects-DzKDpMo3.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CTEqRH69.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function WorkHighlightScroll() {
-	const rig = useHorizontalScrollRig(projects.length, { travelPerItem: 280 });
+	const featured = projects.slice(0, 5);
+	const rig = useHorizontalScrollRig(featured.length, { travelPerItem: 280 });
 	const ref = (0, import_react.useRef)(null);
 	useDeclareSectionTheme(ref, "ink");
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
@@ -24,20 +25,20 @@ function WorkHighlightScroll() {
 			style: { height: rig.wrapperHeight },
 			className: "relative",
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "sticky top-0 flex h-screen flex-col overflow-hidden",
+				className: rig.isPinned ? "sticky top-0 flex h-screen flex-col overflow-hidden" : "flex flex-col",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "flex shrink-0 items-end justify-between px-6 pb-10 pt-24 lg:px-24",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 						className: "eyebrow mb-4",
 						style: { color: "var(--lime)" },
-						children: ["Sélection — ", String(projects.length).padStart(2, "0")]
+						children: ["Sélection — ", String(featured.length).padStart(2, "0")]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
 						className: "display-section",
 						style: { color: "var(--paper)" },
 						children: "Projets sélectionnés"
 					})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex items-center gap-6",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						children: [rig.isPinned && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex gap-2",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								onClick: rig.scrollPrev,
@@ -78,41 +79,47 @@ function WorkHighlightScroll() {
 						})
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
 						ref: rig.trackRef,
-						className: rig.isPinned ? "flex items-center gap-6 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 py-16",
+						className: rig.isPinned ? "flex items-center gap-6 px-6 lg:px-24" : "flex flex-col gap-6 px-6 pb-16 w-full",
 						style: rig.isPinned ? {
 							x: rig.x,
 							willChange: "transform"
 						} : void 0,
-						children: [projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+						children: [featured.map((p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 							to: "/projets/$slug",
 							params: { slug: p.slug },
-							className: "group relative block h-[52vh] w-[62vw] shrink-0 overflow-hidden md:w-[36vw] lg:w-[26vw]",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-								src: p.cover,
-								alt: p.title,
-								loading: "lazy",
-								className: "bw-hover-ember h-full w-full object-cover"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "absolute inset-x-0 bottom-0 flex items-baseline justify-between p-4",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-									className: "text-xl font-black tracking-tight",
-									style: {
-										color: "var(--paper)",
-										fontFamily: "var(--font-display)"
-									},
-									children: p.title
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-xs",
-									style: {
-										color: "var(--lime)",
-										fontFamily: "var(--font-mono)"
-									},
-									children: p.index
-								})]
-							})]
+							className: `group relative block shrink-0 overflow-hidden ${rig.isPinned ? "h-[52vh] w-[62vw] md:w-[36vw] lg:w-[26vw]" : "h-[50vh] w-full"}`,
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: p.cover,
+									alt: p.title,
+									loading: "lazy",
+									className: "bw-hover-ember h-full w-full object-cover"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "absolute inset-x-0 bottom-0 flex items-baseline justify-between p-4",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+										className: "text-xl font-black tracking-tight",
+										style: {
+											color: "var(--lime)",
+											fontFamily: "var(--font-display)",
+											textShadow: "0px 4px 12px rgba(0,0,0,0.9)"
+										},
+										children: p.title
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-xs",
+										style: {
+											color: "var(--lime)",
+											fontFamily: "var(--font-mono)",
+											textShadow: "0px 2px 4px rgba(0,0,0,0.8)"
+										},
+										children: p.index
+									})]
+								})
+							]
 						}, p.slug)), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 							to: "/projets",
-							className: "flex h-[52vh] w-[46vw] shrink-0 flex-col items-start justify-end gap-4 border border-white/15 p-6 md:w-[28vw] lg:w-[20vw]",
+							className: `flex shrink-0 flex-col items-start justify-end gap-4 border border-white/15 p-6 ${rig.isPinned ? "h-[52vh] w-[46vw] md:w-[28vw] lg:w-[20vw]" : "h-[30vh] w-full"}`,
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUpRight, {
 								size: 32,
 								strokeWidth: 1.5,
@@ -151,7 +158,8 @@ skillCategories.forEach((c) => {
 	});
 });
 function SkillsHighlightScroll() {
-	const rig = useHorizontalScrollRig(galleryItems.length, { travelPerItem: 220 });
+	const featuredItems = galleryItems.slice(0, 10);
+	const rig = useHorizontalScrollRig(featuredItems.length, { travelPerItem: 220 });
 	const ref = (0, import_react.useRef)(null);
 	useDeclareSectionTheme(ref, "paper");
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
@@ -163,7 +171,7 @@ function SkillsHighlightScroll() {
 			style: { height: rig.wrapperHeight },
 			className: "relative",
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "sticky top-0 flex h-screen flex-col overflow-hidden",
+				className: rig.isPinned ? "sticky top-0 flex h-screen flex-col overflow-hidden" : "flex flex-col",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "flex shrink-0 items-end justify-between px-6 pb-8 pt-24 lg:px-24",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -176,7 +184,7 @@ function SkillsHighlightScroll() {
 						children: "Compétences"
 					})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex items-center gap-6",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						children: [rig.isPinned && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex gap-2",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								onClick: rig.scrollPrev,
@@ -218,13 +226,13 @@ function SkillsHighlightScroll() {
 						})
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
 						ref: rig.trackRef,
-						className: rig.isPinned ? "flex items-center gap-3 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 py-16",
+						className: rig.isPinned ? "flex items-center gap-3 px-6 lg:px-24" : "flex flex-col gap-4 px-6 pb-16 w-full",
 						style: rig.isPinned ? {
 							x: rig.x,
 							willChange: "transform"
 						} : void 0,
-						children: [galleryItems.map((it) => it.type === "header" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "group relative flex h-40 w-80 shrink-0 flex-col justify-end overflow-hidden border transition-all duration-500 hover:-translate-y-1 hover:border-[color:var(--lime)] hover:shadow-xl",
+						children: [featuredItems.map((it) => it.type === "header" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: `group relative flex h-40 shrink-0 flex-col justify-end overflow-hidden border transition-all duration-500 hover:-translate-y-1 hover:border-[color:var(--lime)] hover:shadow-xl ${rig.isPinned ? "w-80" : "w-full"}`,
 							style: {
 								backgroundColor: "var(--ink)",
 								borderColor: "transparent",
@@ -258,7 +266,7 @@ function SkillsHighlightScroll() {
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 z-0 bg-[color:var(--lime)] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-20" })
 							]
 						}, it.index) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "group flex h-40 w-56 shrink-0 flex-col justify-between border border-ink/15 p-5 transition-all duration-300 hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:-translate-y-1 hover:shadow-xl",
+							className: `group flex h-40 shrink-0 flex-col justify-between border border-ink/15 p-5 transition-all duration-300 hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:-translate-y-1 hover:shadow-xl ${rig.isPinned ? "w-56" : "w-full"}`,
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 group-hover:text-[color:var(--paper)] group-hover:opacity-90",
 								style: {
@@ -280,7 +288,7 @@ function SkillsHighlightScroll() {
 						}, it.index)), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 							to: "/about",
 							hash: "competences",
-							className: "group flex h-40 w-56 shrink-0 flex-col justify-between border border-transparent p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl",
+							className: `group flex h-40 shrink-0 flex-col justify-between border border-transparent p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${rig.isPinned ? "w-56" : "w-full"}`,
 							style: { backgroundColor: "var(--ink)" },
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 								className: "flex h-10 w-10 items-center justify-center rounded-full transition-transform duration-500 group-hover:rotate-45",
@@ -870,7 +878,7 @@ function Footer() {
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
 					"© ",
 					(/* @__PURE__ */ new Date()).getFullYear(),
-					" DigitalVision — Kengbo Othnelio Raphaëlo."
+					" Kengbo Othnelio Raphaëlo."
 				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Lomé, Togo" })]
 			})]
 		})]

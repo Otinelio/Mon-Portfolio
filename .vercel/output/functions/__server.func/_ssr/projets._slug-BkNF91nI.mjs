@@ -1,15 +1,15 @@
-import { a as __toESM } from "../_runtime.mjs";
-import { r as motion } from "../_libs/framer-motion.mjs";
+import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { n as useDeclareSectionTheme } from "./useSectionTheme-sAEUATbs.mjs";
+import { i as AnimatePresence, r as motion } from "../_libs/framer-motion.mjs";
 import { n as SplitReveal, t as SectionReveal } from "./SectionReveal-Dh2Gx0rf.mjs";
 import { g as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { f as ExternalLink, h as ArrowRight, l as Github, m as ArrowUpRight } from "../_libs/lucide-react.mjs";
-import { t as Footer } from "./routes-DgKvGHkC.mjs";
-import { t as useHorizontalScrollRig } from "./useHorizontalScrollRig-BPmGxn71.mjs";
-import { t as getNextProject } from "./projects-Ux56nw6G.mjs";
-import { t as Route } from "./projets._slug-Cg9TUx1M.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/projets._slug-BI3nNBZi.js
+import { _ as ChevronRight, b as ArrowRight, f as Github, h as ExternalLink, n as ZoomIn, r as X, t as ZoomOut, v as ChevronLeft, y as ArrowUpRight } from "../_libs/lucide-react.mjs";
+import { t as Footer } from "./routes-Cevld2U2.mjs";
+import { t as useHorizontalScrollRig } from "./useHorizontalScrollRig-lcp0tcPt.mjs";
+import { t as getNextProject } from "./projects-DzKDpMo3.mjs";
+import { t as Route } from "./projets._slug-t6PHA6Kx.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/projets._slug-BkNF91nI.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function PhoneMockup({ src, alt, className = "", children, heightCss }) {
@@ -94,15 +94,16 @@ function PhoneMockup({ src, alt, className = "", children, heightCss }) {
 function ProcessFilmstrip({ images, title, layout = "desktop" }) {
 	const isMobile = layout === "mobile";
 	const rig = useHorizontalScrollRig(images.length, { travelPerItem: isMobile ? 320 : 420 });
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+	const [selectedIndex, setSelectedIndex] = (0, import_react.useState)(null);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 		className: "relative",
 		style: { backgroundColor: "var(--ink)" },
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 			ref: rig.wrapperRef,
 			style: { height: rig.wrapperHeight },
 			className: "relative",
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "sticky top-0 flex h-screen flex-col justify-center overflow-hidden",
+				className: rig.isPinned ? "sticky top-0 flex h-screen flex-col justify-center overflow-hidden" : "flex flex-col",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 					className: "mb-6 px-6 lg:px-24",
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionReveal, {
@@ -117,13 +118,14 @@ function ProcessFilmstrip({ images, title, layout = "desktop" }) {
 					className: "relative",
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.div, {
 						ref: rig.trackRef,
-						className: rig.isPinned ? "flex items-center gap-8 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-8 lg:px-24",
+						className: rig.isPinned ? "flex items-center gap-8 px-6 lg:px-24" : "flex flex-col items-center gap-16 px-6 pb-16 pt-8 w-full",
 						style: rig.isPinned ? {
 							x: rig.x,
 							willChange: "transform"
-						} : { cursor: "grab" },
+						} : void 0,
 						children: images.map((src, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "relative shrink-0 snap-center",
+							className: "relative shrink-0 snap-center cursor-pointer transition-transform hover:scale-[1.02] active:scale-95",
+							onClick: () => setSelectedIndex(i),
 							children: isMobile ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "group relative",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneMockup, {
@@ -148,7 +150,7 @@ function ProcessFilmstrip({ images, title, layout = "desktop" }) {
 									})
 								})]
 							}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "relative h-[60vh] w-[80vw] overflow-hidden md:w-[52vw] lg:w-[42vw]",
+								className: `relative overflow-hidden ${rig.isPinned ? "h-[60vh] w-[80vw] md:w-[52vw] lg:w-[42vw]" : "h-[50vh] w-full"}`,
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 									src,
 									alt: `${title} — image ${i + 1}`,
@@ -180,7 +182,148 @@ function ProcessFilmstrip({ images, title, layout = "desktop" }) {
 					})
 				})]
 			})
-		})
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnimatePresence, { children: selectedIndex !== null && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lightbox, {
+			images,
+			initialIndex: selectedIndex,
+			onClose: () => setSelectedIndex(null)
+		}) })]
+	});
+}
+function Lightbox({ images, initialIndex, onClose }) {
+	const [index, setIndex] = (0, import_react.useState)(initialIndex);
+	const [zoom, setZoom] = (0, import_react.useState)(1);
+	(0, import_react.useEffect)(() => {
+		setZoom(1);
+	}, [index]);
+	(0, import_react.useEffect)(() => {
+		const handleKeyDown = (e) => {
+			if (e.key === "Escape") onClose();
+			if (e.key === "ArrowRight") setIndex((prev) => (prev + 1) % images.length);
+			if (e.key === "ArrowLeft") setIndex((prev) => (prev - 1 + images.length) % images.length);
+			if (e.key === "+" || e.key === "=") setZoom((z) => Math.min(z + .5, 4));
+			if (e.key === "-") setZoom((z) => Math.max(z - .5, 1));
+		};
+		window.addEventListener("keydown", handleKeyDown);
+		document.body.style.overflow = "hidden";
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown);
+			document.body.style.overflow = "auto";
+		};
+	}, [images.length, onClose]);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
+		initial: { opacity: 0 },
+		animate: { opacity: 1 },
+		exit: { opacity: 0 },
+		className: "fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm",
+		onClick: onClose,
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+				onClick: onClose,
+				className: "absolute right-4 top-4 z-50 flex h-10 w-10 md:right-8 md:top-8 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[color:var(--ember)]",
+				title: "Fermer (Échap)",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 24 })
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "absolute top-4 left-4 z-50 flex items-center gap-2 md:left-8 md:top-8",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: (e) => {
+							e.stopPropagation();
+							setZoom((z) => Math.min(z + .5, 4));
+						},
+						className: "flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20",
+						title: "Zoom In (+)",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ZoomIn, { size: 20 })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: (e) => {
+							e.stopPropagation();
+							setZoom((z) => Math.max(z - .5, 1));
+						},
+						className: "flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20",
+						title: "Zoom Out (-)",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ZoomOut, { size: 20 })
+					}),
+					zoom !== 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: (e) => {
+							e.stopPropagation();
+							setZoom(1);
+						},
+						className: "flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-[color:var(--lime)] text-[color:var(--ink)] font-bold transition-colors hover:opacity-80 text-xs",
+						title: "Réinitialiser le zoom",
+						children: "1x"
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+				onClick: (e) => {
+					e.stopPropagation();
+					setIndex((prev) => (prev - 1 + images.length) % images.length);
+				},
+				className: "absolute left-4 top-1/2 z-50 flex h-10 w-10 md:left-8 md:h-12 md:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[color:var(--lime)] hover:text-[color:var(--ink)]",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, { size: 24 })
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+				onClick: (e) => {
+					e.stopPropagation();
+					setIndex((prev) => (prev + 1) % images.length);
+				},
+				className: "absolute right-4 top-1/2 z-50 flex h-10 w-10 md:right-8 md:h-12 md:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[color:var(--lime)] hover:text-[color:var(--ink)]",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { size: 24 })
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "relative h-[85vh] w-[100vw] md:w-[90vw] max-w-7xl p-4 md:p-12 overflow-hidden",
+				onClick: (e) => e.stopPropagation(),
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.div, {
+					initial: {
+						opacity: 0,
+						scale: .95
+					},
+					animate: {
+						opacity: 1,
+						scale: zoom
+					},
+					exit: {
+						opacity: 0,
+						scale: 1.05
+					},
+					transition: {
+						duration: .3,
+						ease: [
+							.22,
+							1,
+							.36,
+							1
+						]
+					},
+					className: `h-full w-full ${zoom > 1 ? "cursor-grab active:cursor-grabbing" : ""}`,
+					drag: zoom > 1,
+					dragConstraints: {
+						left: -500,
+						right: 500,
+						top: -500,
+						bottom: 500
+					},
+					dragElastic: .1,
+					onDoubleClick: () => setZoom((z) => z > 1 ? 1 : 2),
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+						src: images[index],
+						alt: `Image ${index + 1}`,
+						className: "h-full w-full object-contain pointer-events-none"
+					})
+				}, `container-${index}`), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "absolute bottom-0 md:bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-black/60 px-4 py-2 text-xs tracking-[0.2em] text-white backdrop-blur-md",
+					style: { fontFamily: "var(--font-mono)" },
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						style: { color: "var(--lime)" },
+						children: String(index + 1).padStart(2, "0")
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "opacity-50",
+						children: [" / ", String(images.length).padStart(2, "0")]
+					})]
+				})]
+			})
+		]
 	});
 }
 function ProjectDetail() {
@@ -188,6 +331,12 @@ function ProjectDetail() {
 	const next = getNextProject(project.slug);
 	const ref = (0, import_react.useRef)(null);
 	useDeclareSectionTheme(ref, "ink");
+	(0, import_react.useEffect)(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: "instant"
+		});
+	}, [project.slug]);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		ref,
 		style: {

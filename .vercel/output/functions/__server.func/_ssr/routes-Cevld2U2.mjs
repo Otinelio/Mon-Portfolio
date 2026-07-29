@@ -1,13 +1,13 @@
-import { a as __toESM } from "../_runtime.mjs";
+import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { n as useDeclareSectionTheme } from "./useSectionTheme-sAEUATbs.mjs";
 import { n as SplitReveal } from "./SectionReveal-Dh2Gx0rf.mjs";
 import { g as Link, m as createFileRoute, p as lazyRouteComponent } from "../_libs/@tanstack/react-router+[...].mjs";
-import { i as MessageCircle, l as Github, m as ArrowUpRight, o as Mail, r as Phone, s as Linkedin } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-DgKvGHkC.js
+import { f as Github, l as Mail, o as Phone, s as MessageCircle, u as Linkedin, y as ArrowUpRight } from "../_libs/lucide-react.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-Cevld2U2.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var $$splitComponentImporter = () => import("./routes-B0xM0tXP.mjs");
+var $$splitComponentImporter = () => import("./routes-CTEqRH69.mjs");
 var Route = createFileRoute("/")({
 	head: () => ({
 		meta: [
@@ -230,7 +230,7 @@ function Footer() {
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
 					"© ",
 					(/* @__PURE__ */ new Date()).getFullYear(),
-					" DigitalVision — Kengbo Othnelio Raphaëlo."
+					" Kengbo Othnelio Raphaëlo."
 				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Lomé, Togo" })]
 			})]
 		})]

@@ -1,10 +1,10 @@
-import { a as __toESM } from "../_runtime.mjs";
-import { r as motion } from "../_libs/framer-motion.mjs";
+import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { n as useDeclareSectionTheme } from "./useSectionTheme-sAEUATbs.mjs";
-import { i as MessageCircle, l as Github, m as ArrowUpRight, o as Mail, r as Phone, s as Linkedin } from "../_libs/lucide-react.mjs";
-import { t as Footer } from "./routes-DgKvGHkC.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/contact-B8owEqVT.js
+import { r as motion } from "../_libs/framer-motion.mjs";
+import { f as Github, l as Mail, o as Phone, s as MessageCircle, u as Linkedin, y as ArrowUpRight } from "../_libs/lucide-react.mjs";
+import { t as Footer } from "./routes-Cevld2U2.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/contact-zJEeoeBO.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var EMAIL = "kengboothnelioraphaelo@gmail.com";
@@ -86,6 +86,8 @@ function Contact() {
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
 						onSubmit: (e) => {
 							e.preventDefault();
+							const text = `Bonjour, je suis ${form.name}.\n\n${form.message}\n\nMon email : ${form.email}`;
+							window.open(`https://wa.me/22898472701?text=${encodeURIComponent(text)}`, "_blank");
 							setSent(true);
 						},
 						className: "flex max-w-xl flex-col gap-10",
@@ -118,12 +120,12 @@ function Contact() {
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 								type: "submit",
-								className: "magnetic-btn inline-flex w-fit items-center gap-3 border border-[color:var(--ink)] px-6 py-4 text-xs uppercase tracking-[0.2em] transition-colors hover:bg-[color:var(--ink)] hover:text-[color:var(--paper)]",
+								className: "magnetic-btn inline-flex w-fit items-center gap-3 border border-[color:var(--ink)] px-6 py-4 text-xs uppercase tracking-[0.2em] transition-colors hover:bg-[color:var(--ember)] hover:border-[color:var(--ember)] hover:text-[color:var(--paper)]",
 								style: {
 									fontFamily: "var(--font-mono)",
 									color: "var(--ink)"
 								},
-								children: ["Envoyer le message ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUpRight, {
+								children: ["Envoyer via WhatsApp ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUpRight, {
 									size: 16,
 									strokeWidth: 1.5
 								})]
@@ -131,12 +133,12 @@ function Contact() {
 							sent && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.p, {
 								initial: { opacity: 0 },
 								animate: { opacity: 1 },
-								className: "text-xs uppercase tracking-[0.18em]",
+								className: "text-sm uppercase tracking-[0.18em] font-semibold",
 								style: {
 									color: "var(--ember)",
 									fontFamily: "var(--font-mono)"
 								},
-								children: "→ Merci. Message pris en compte (démo — brancher un endpoint)."
+								children: "→ Redirection vers WhatsApp en cours..."
 							})
 						]
 					})
@@ -246,9 +248,9 @@ function UnderlineField({ label, value, onChange, type = "text", multiline = fal
 function DirectLink({ icon: Icon, label, value, href }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 		href,
-		className: "group flex items-center justify-between gap-6 border-b border-ink/15 pb-3",
+		className: "group flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-6 border-b border-ink/15 pb-3",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-			className: "flex items-center gap-3",
+			className: "flex items-center gap-3 shrink-0",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, {
 				size: 16,
 				strokeWidth: 1.5,
@@ -263,17 +265,21 @@ function DirectLink({ icon: Icon, label, value, href }) {
 				children: label
 			})]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-			className: "flex items-center gap-2 text-sm transition-colors group-hover:text-[color:var(--ember)]",
+			className: "flex items-center gap-2 text-[13px] md:text-sm transition-colors group-hover:text-[color:var(--ember)] md:text-right break-words",
 			style: {
 				color: "var(--ink)",
 				fontFamily: "var(--font-mono)"
 			},
 			children: [
-				value,
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "break-all md:break-normal",
+					children: value
+				}),
 				" ",
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUpRight, {
 					size: 14,
-					strokeWidth: 1.5
+					strokeWidth: 1.5,
+					className: "shrink-0"
 				})
 			]
 		})]

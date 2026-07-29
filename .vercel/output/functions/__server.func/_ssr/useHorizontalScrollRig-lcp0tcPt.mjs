@@ -1,15 +1,15 @@
-import { a as __toESM } from "../_runtime.mjs";
-import { n as useScroll, t as useTransform } from "../_libs/framer-motion.mjs";
+import { o as __toESM } from "../_runtime.mjs";
 import { r as require_react } from "../_libs/react+tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/useHorizontalScrollRig-BPmGxn71.js
+import { n as useScroll, t as useTransform } from "../_libs/framer-motion.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/useHorizontalScrollRig-lcp0tcPt.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 /**
 * Shared engineering for every pinned horizontal scroll section.
 * Returns refs + a horizontal x MotionValue driven by vertical scroll.
-* Falls back to native horizontal overflow on touch / reduced motion.
+* Falls back to native horizontal overflow only on reduced motion.
 */
 function useHorizontalScrollRig(itemCount, opts = {}) {
-	const { travelPerItem = 380, overscan = 1 } = opts;
+	const { travelPerItem = 600, overscan = 1 } = opts;
 	const wrapperRef = (0, import_react.useRef)(null);
 	const trackRef = (0, import_react.useRef)(null);
 	const [isPinned, setIsPinned] = (0, import_react.useState)(true);
@@ -17,14 +17,19 @@ function useHorizontalScrollRig(itemCount, opts = {}) {
 	const [trackW, setTrackW] = (0, import_react.useState)(0);
 	const [winW, setWinW] = (0, import_react.useState)(0);
 	(0, import_react.useEffect)(() => {
-		const touch = window.matchMedia("(pointer: coarse)").matches;
-		const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-		setIsPinned(!touch && !reduced);
+		const checkIsPinned = () => {
+			const touch = window.matchMedia("(pointer: coarse)").matches;
+			const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			const isMobileSize = window.innerWidth < 768;
+			return !(touch || isMobileSize || reduced);
+		};
+		setIsPinned(checkIsPinned());
 		setViewportH(window.innerHeight);
 		setWinW(window.innerWidth);
 		const onResize = () => {
 			setViewportH(window.innerHeight);
 			setWinW(window.innerWidth);
+			setIsPinned(checkIsPinned());
 			if (trackRef.current) setTrackW(trackRef.current.scrollWidth);
 		};
 		window.addEventListener("resize", onResize);
