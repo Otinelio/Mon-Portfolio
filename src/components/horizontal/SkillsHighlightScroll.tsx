@@ -20,14 +20,15 @@ skillCategories.forEach((c) => {
 });
 
 export function SkillsHighlightScroll() {
-  const rig = useHorizontalScrollRig(galleryItems.length, { travelPerItem: 220 });
+  const featuredItems = galleryItems.slice(0, 10);
+  const rig = useHorizontalScrollRig(featuredItems.length, { travelPerItem: 220 });
   const ref = useRef<HTMLElement>(null);
   useDeclareSectionTheme(ref, "paper");
 
   return (
     <section ref={ref} className="relative" style={{ backgroundColor: "var(--paper)" }}>
       <div ref={rig.wrapperRef} style={{ height: rig.wrapperHeight }} className="relative">
-        <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+        <div className={rig.isPinned ? "sticky top-0 flex h-screen flex-col overflow-hidden" : "flex flex-col"}>
           <div className="flex shrink-0 items-end justify-between px-6 pb-8 pt-24 lg:px-24">
             <div>
               <p className="eyebrow mb-4" style={{ color: "var(--ember)" }}>Boîte à outils</p>
@@ -35,14 +36,16 @@ export function SkillsHighlightScroll() {
             </div>
 
             <div className="flex items-center gap-6">
-              <div className="flex gap-2">
-                <button onClick={rig.scrollPrev} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à gauche">
-                  <ArrowLeft size={16} />
-                </button>
-                <button onClick={rig.scrollNext} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à droite">
-                  <ArrowRight size={16} />
-                </button>
-              </div>
+              {rig.isPinned && (
+                <div className="flex gap-2">
+                  <button onClick={rig.scrollPrev} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à gauche">
+                    <ArrowLeft size={16} />
+                  </button>
+                  <button onClick={rig.scrollNext} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à droite">
+                    <ArrowRight size={16} />
+                  </button>
+                </div>
+              )}
 
               <Link
                 to="/about"
@@ -61,15 +64,15 @@ export function SkillsHighlightScroll() {
             </div>
             <motion.div
               ref={rig.trackRef}
-              className={rig.isPinned ? "flex items-center gap-3 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 py-16"}
+              className={rig.isPinned ? "flex items-center gap-3 px-6 lg:px-24" : "flex flex-col gap-4 px-6 pb-16 w-full"}
               style={rig.isPinned ? { x: rig.x, willChange: "transform" } : undefined}
             >
-              {galleryItems.map((it) => (
+              {featuredItems.map((it) => (
                 it.type === 'header'
                   ? (
                     <div
                       key={it.index}
-                      className="group relative flex h-40 w-80 shrink-0 flex-col justify-end overflow-hidden border transition-all duration-500 hover:-translate-y-1 hover:border-[color:var(--lime)] hover:shadow-xl"
+                      className={`group relative flex h-40 shrink-0 flex-col justify-end overflow-hidden border transition-all duration-500 hover:-translate-y-1 hover:border-[color:var(--lime)] hover:shadow-xl ${rig.isPinned ? 'w-80' : 'w-full'}`}
                       style={{ backgroundColor: "var(--ink)", borderColor: "transparent", color: "var(--paper)", padding: "1.25rem" }}
                     >
                       <div className="absolute left-5 top-5">
@@ -91,7 +94,7 @@ export function SkillsHighlightScroll() {
                   : (
                     <div
                       key={it.index}
-                      className="group flex h-40 w-56 shrink-0 flex-col justify-between border border-ink/15 p-5 transition-all duration-300 hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:-translate-y-1 hover:shadow-xl"
+                      className={`group flex h-40 shrink-0 flex-col justify-between border border-ink/15 p-5 transition-all duration-300 hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:-translate-y-1 hover:shadow-xl ${rig.isPinned ? 'w-56' : 'w-full'}`}
                     >
                       <span
                         className="text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 group-hover:text-[color:var(--paper)] group-hover:opacity-90"
@@ -111,7 +114,7 @@ export function SkillsHighlightScroll() {
               <Link
                 to="/about"
                 hash="competences"
-                className="group flex h-40 w-56 shrink-0 flex-col justify-between border border-transparent p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className={`group flex h-40 shrink-0 flex-col justify-between border border-transparent p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${rig.isPinned ? 'w-56' : 'w-full'}`}
                 style={{ backgroundColor: "var(--ink)" }}
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-full transition-transform duration-500 group-hover:rotate-45" style={{ backgroundColor: "rgba(247,246,243,0.1)" }}>

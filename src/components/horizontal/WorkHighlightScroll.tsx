@@ -15,7 +15,7 @@ export function WorkHighlightScroll() {
   return (
     <section ref={ref} className="relative" style={{ backgroundColor: "var(--ink)" }}>
       <div ref={rig.wrapperRef} style={{ height: rig.wrapperHeight }} className="relative">
-        <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+        <div className={rig.isPinned ? "sticky top-0 flex h-screen flex-col overflow-hidden" : "flex flex-col"}>
 
           <div className="flex shrink-0 items-end justify-between px-6 pb-10 pt-24 lg:px-24">
             <div>
@@ -28,14 +28,16 @@ export function WorkHighlightScroll() {
             </div>
 
             <div className="flex items-center gap-6">
-              <div className="flex gap-2">
-                <button onClick={rig.scrollPrev} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[color:var(--paper)] transition-colors hover:border-[color:var(--lime)] hover:bg-[color:var(--lime)] hover:text-[color:var(--ink)]" aria-label="Défiler à gauche">
-                  <ArrowLeft size={16} />
-                </button>
-                <button onClick={rig.scrollNext} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[color:var(--paper)] transition-colors hover:border-[color:var(--lime)] hover:bg-[color:var(--lime)] hover:text-[color:var(--ink)]" aria-label="Défiler à droite">
-                  <ArrowRight size={16} />
-                </button>
-              </div>
+              {rig.isPinned && (
+                <div className="flex gap-2">
+                  <button onClick={rig.scrollPrev} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[color:var(--paper)] transition-colors hover:border-[color:var(--lime)] hover:bg-[color:var(--lime)] hover:text-[color:var(--ink)]" aria-label="Défiler à gauche">
+                    <ArrowLeft size={16} />
+                  </button>
+                  <button onClick={rig.scrollNext} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[color:var(--paper)] transition-colors hover:border-[color:var(--lime)] hover:bg-[color:var(--lime)] hover:text-[color:var(--ink)]" aria-label="Défiler à droite">
+                    <ArrowRight size={16} />
+                  </button>
+                </div>
+              )}
 
               <Link
                 to="/projets"
@@ -53,7 +55,7 @@ export function WorkHighlightScroll() {
             </div>
             <motion.div
               ref={rig.trackRef}
-              className={rig.isPinned ? "flex items-center gap-6 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 py-16"}
+              className={rig.isPinned ? "flex items-center gap-6 px-6 lg:px-24" : "flex flex-col gap-6 px-6 pb-16 w-full"}
               style={rig.isPinned ? { x: rig.x, willChange: "transform" } : undefined}
             >
               {featured.map((p) => (
@@ -61,7 +63,7 @@ export function WorkHighlightScroll() {
                   key={p.slug}
                   to="/projets/$slug"
                   params={{ slug: p.slug }}
-                  className="group relative block h-[52vh] w-[62vw] shrink-0 overflow-hidden md:w-[36vw] lg:w-[26vw]"
+                  className={`group relative block shrink-0 overflow-hidden ${rig.isPinned ? 'h-[52vh] w-[62vw] md:w-[36vw] lg:w-[26vw]' : 'h-[50vh] w-full'}`}
                 >
                   <img src={p.cover} alt={p.title} loading="lazy" className="bw-hover-ember h-full w-full object-cover" />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" />
@@ -75,7 +77,7 @@ export function WorkHighlightScroll() {
               ))}
               <Link
                 to="/projets"
-                className="flex h-[52vh] w-[46vw] shrink-0 flex-col items-start justify-end gap-4 border border-white/15 p-6 md:w-[28vw] lg:w-[20vw]"
+                className={`flex shrink-0 flex-col items-start justify-end gap-4 border border-white/15 p-6 ${rig.isPinned ? 'h-[52vh] w-[46vw] md:w-[28vw] lg:w-[20vw]' : 'h-[30vh] w-full'}`}
               >
                 <ArrowUpRight size={32} strokeWidth={1.5} style={{ color: "var(--lime)" }} />
                 <h3 className="text-2xl" style={{ color: "var(--paper)", fontFamily: "var(--font-display)", fontWeight: 900 }}>

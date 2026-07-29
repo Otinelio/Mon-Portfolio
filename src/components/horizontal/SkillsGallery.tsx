@@ -33,7 +33,7 @@ export function SkillsGallery() {
   return (
     <section ref={sectionRef} id="competences" className="relative scroll-mt-20" style={{ backgroundColor: "var(--paper)", color: "var(--ink)" }}>
       <div ref={rig.wrapperRef} style={{ height: rig.wrapperHeight }} className="relative">
-        <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+        <div className={rig.isPinned ? "sticky top-0 flex h-screen flex-col overflow-hidden" : "flex flex-col"}>
           
           <div className="flex shrink-0 items-end justify-between px-6 pb-8 pt-24 lg:px-24">
             <div>
@@ -46,14 +46,16 @@ export function SkillsGallery() {
             </div>
             
             <SectionReveal delay={0.3} className="flex items-center gap-6">
-              <div className="flex gap-2">
-                <button onClick={rig.scrollPrev} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à gauche">
-                  <ArrowLeft size={16} />
-                </button>
-                <button onClick={rig.scrollNext} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à droite">
-                  <ArrowRight size={16} />
-                </button>
-              </div>
+              {rig.isPinned && (
+                <div className="flex gap-2">
+                  <button onClick={rig.scrollPrev} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à gauche">
+                    <ArrowLeft size={16} />
+                  </button>
+                  <button onClick={rig.scrollNext} className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 text-[color:var(--ink)] transition-colors hover:border-[color:var(--ember)] hover:bg-[color:var(--ember)] hover:text-[color:var(--paper)]" aria-label="Défiler à droite">
+                    <ArrowRight size={16} />
+                  </button>
+                </div>
+              )}
             </SectionReveal>
           </div>
 
@@ -64,13 +66,13 @@ export function SkillsGallery() {
 
           <motion.div
             ref={rig.trackRef}
-            className={rig.isPinned ? "flex items-center gap-3 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 py-16"}
+            className={rig.isPinned ? "flex items-center gap-3 px-6 lg:px-24" : "flex flex-col gap-4 px-6 pb-16 w-full"}
             style={rig.isPinned ? { x: rig.x, willChange: "transform" } : undefined}
           >
             {galleryItems.map((it) => (
               it.type === 'header' 
-                ? <CategoryHeaderCapsule key={it.index} category={it.cat} index={it.index} />
-                : <SkillCapsule key={it.index} label={it.label} category={it.cat} index={it.index} />
+                ? <CategoryHeaderCapsule key={it.index} category={it.cat} index={it.index} isPinned={rig.isPinned} />
+                : <SkillCapsule key={it.index} label={it.label} category={it.cat} index={it.index} isPinned={rig.isPinned} />
             ))}
           </motion.div>
         </div>
@@ -80,10 +82,10 @@ export function SkillsGallery() {
   );
 }
 
-function SkillCapsule({ label, category, index }: { label: string; category: string; index: number }) {
+function SkillCapsule({ label, category, index, isPinned = true }: { label: string; category: string; index: number; isPinned?: boolean }) {
   return (
     <div
-      className="group flex h-40 w-56 shrink-0 flex-col justify-between border border-ink/15 p-5 transition-colors hover:border-[color:var(--lime)]"
+      className={`group flex h-40 shrink-0 flex-col justify-between border border-ink/15 p-5 transition-colors hover:border-[color:var(--lime)] ${isPinned ? 'w-56' : 'w-full'}`}
       style={{ backgroundColor: "var(--paper)" }}
     >
       <div className="flex items-start justify-between">
@@ -101,10 +103,10 @@ function SkillCapsule({ label, category, index }: { label: string; category: str
   );
 }
 
-function CategoryHeaderCapsule({ category, index }: { category: string; index: number }) {
+function CategoryHeaderCapsule({ category, index, isPinned = true }: { category: string; index: number; isPinned?: boolean }) {
   return (
     <div
-      className="group relative flex h-40 w-80 shrink-0 flex-col justify-end overflow-hidden border transition-all duration-500 hover:-translate-y-1 hover:border-[color:var(--lime)] hover:shadow-[0_20px_40px_-15px_rgba(212,255,63,0.3)]"
+      className={`group relative flex h-40 shrink-0 flex-col justify-end overflow-hidden border transition-all duration-500 hover:-translate-y-1 hover:border-[color:var(--lime)] hover:shadow-[0_20px_40px_-15px_rgba(212,255,63,0.3)] ${isPinned ? 'w-80' : 'w-full'}`}
       style={{ backgroundColor: "var(--ink)", borderColor: "transparent", color: "var(--paper)", padding: "1.25rem" }}
     >
       <div className="absolute left-5 top-5">

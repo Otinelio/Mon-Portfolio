@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useHorizontalScrollRig } from "./useHorizontalScrollRig";
 import { projects, type Project, type ProjectTag } from "@/config/projects";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 
 const TAGS: (ProjectTag | "Tous")[] = ["Tous", "Web", "Mobile", "Branding"];
 
 export function HorizontalGallery() {
   const [filter, setFilter] = useState<ProjectTag | "Tous">("Tous");
   const filtered = filter === "Tous" ? projects : projects.filter((p) => p.tags.includes(filter));
-  const rig = useHorizontalScrollRig(filtered.length, { travelPerItem: 420 });
+  const rig = useHorizontalScrollRig(filtered.length + 1, { travelPerItem: 420 });
 
   return (
     <section className="relative" style={{ backgroundColor: "var(--ink)" }}>
@@ -41,7 +41,7 @@ export function HorizontalGallery() {
       </div>
 
       <div ref={rig.wrapperRef} style={{ height: rig.wrapperHeight }} className="relative">
-        <div className="sticky top-0 h-screen overflow-hidden">
+        <div className={rig.isPinned ? "sticky top-0 h-screen overflow-hidden" : "flex flex-col"}>
           <div className="absolute left-0 right-0 top-0 h-px" style={{ backgroundColor: "rgba(247,246,243,0.1)" }}>
             <motion.div
               className="h-full origin-left"
@@ -51,12 +51,23 @@ export function HorizontalGallery() {
 
           <motion.div
             ref={rig.trackRef}
-            className={rig.isPinned ? "flex h-full items-center gap-8 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 py-16"}
+            className={rig.isPinned ? "flex h-full items-center gap-8 px-6 lg:px-24" : "flex flex-col gap-8 px-6 py-16 w-full"}
             style={rig.isPinned ? { x: rig.x, willChange: "transform" } : undefined}
           >
             {filtered.map((p) => (
-              <ProjectCard key={p.slug} project={p} />
+              <ProjectCard key={p.slug} project={p} isPinned={rig.isPinned} />
             ))}
+            <a
+              href="https://github.com/otinelio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group flex shrink-0 flex-col items-start justify-end gap-4 border border-white/15 p-6 transition-colors hover:border-[color:var(--lime)] hover:bg-[color:var(--lime)] ${rig.isPinned ? 'h-[70vh] w-[46vw] md:w-[28vw] lg:w-[20vw]' : 'h-[30vh] w-full'}`}
+            >
+              <Github size={32} strokeWidth={1.5} className="text-[color:var(--lime)] group-hover:text-[color:var(--ink)] transition-colors" />
+              <h3 className="text-2xl text-[color:var(--paper)] group-hover:text-[color:var(--ink)] transition-colors" style={{ fontFamily: "var(--font-display)", fontWeight: 900 }}>
+                Voir tous mes projets sur GitHub →
+              </h3>
+            </a>
           </motion.div>
         </div>
       </div>
@@ -64,12 +75,12 @@ export function HorizontalGallery() {
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, isPinned = true }: { project: Project; isPinned?: boolean }) {
   return (
     <Link
       to="/projets/$slug"
       params={{ slug: project.slug }}
-      className="group relative block h-[70vh] w-[70vw] shrink-0 overflow-hidden md:w-[52vw] lg:w-[38vw]"
+      className={`group relative block shrink-0 overflow-hidden ${isPinned ? 'h-[70vh] w-[70vw] md:w-[52vw] lg:w-[38vw]' : 'h-[50vh] w-full'}`}
     >
       <img
         src={project.cover}

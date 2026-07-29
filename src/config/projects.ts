@@ -33,7 +33,7 @@ export const projects: Project[] = [
     title: "La HuQQa",
     client: "La HuQQa (Restaurant-Café)",
     year: "2024",
-    tags: ["Web", "Mobile"],
+    tags: ["Web"],
     stack: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Realtime"],
     cover: "/projects/lahuqqa/accueil.png",
     gallery: [
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     title: "TOGOLIVING",
     client: "Résidence TOGOLIVING (Villa balnéaire, Lomé, Togo)",
     year: "2024 – 2025",
-    tags: ["Web", "Mobile"],
+    tags: ["Web"],
     stack: [
       "React 19",
       "TanStack Start",
@@ -124,7 +124,7 @@ export const projects: Project[] = [
     title: "La Playa Beach Resort",
     client: "Resort hôtelier & restaurant en bord de mer",
     year: "2025 – 2026",
-    tags: ["Web", "Mobile"],
+    tags: ["Web"],
     stack: [
       "React 19",
       "TanStack Start",
@@ -231,7 +231,7 @@ export const projects: Project[] = [
     title: "Beefcut Grillhouse",
     client: "Restaurant Grillhouse (Lomé, Togo)",
     year: "2025",
-    tags: ["Web", "Mobile"],
+    tags: ["Web"],
     stack: [
       "React 19",
       "Vite 8",
@@ -278,7 +278,7 @@ export const projects: Project[] = [
     title: "Hotel Riviera Ramatou Plage",
     client: "Hotel Riviera Ramatou Plage (Lomé, Togo)",
     year: "2026",
-    tags: ["Web", "Mobile"],
+    tags: ["Web"],
     stack: [
       "React 19",
       "TanStack Start",

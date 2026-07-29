@@ -28,15 +28,24 @@ export function useHorizontalScrollRig(
   const [winW, setWinW] = useState(0);
 
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setIsPinned(!reduced);
+    const checkIsPinned = () => {
+      const touch = window.matchMedia("(pointer: coarse)").matches;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const isMobileSize = window.innerWidth < 768;
+      return !(touch || isMobileSize || reduced);
+    };
+
+    setIsPinned(checkIsPinned());
     setViewportH(window.innerHeight);
     setWinW(window.innerWidth);
+    
     const onResize = () => {
       setViewportH(window.innerHeight);
       setWinW(window.innerWidth);
+      setIsPinned(checkIsPinned());
       if (trackRef.current) setTrackW(trackRef.current.scrollWidth);
     };
+    
     window.addEventListener("resize", onResize);
     if (trackRef.current) setTrackW(trackRef.current.scrollWidth);
     return () => window.removeEventListener("resize", onResize);

@@ -138,13 +138,13 @@ function UnderlineField({
 function DirectLink({ icon: Icon, label, value, href }: { icon: typeof Mail; label: string; value: string; href: string }) {
   return (
     <li>
-      <a href={href} className="group flex items-center justify-between gap-6 border-b border-ink/15 pb-3">
-        <span className="flex items-center gap-3">
+      <a href={href} className="group flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-6 border-b border-ink/15 pb-3">
+        <span className="flex items-center gap-3 shrink-0">
           <Icon size={16} strokeWidth={1.5} style={{ color: "var(--ember)" }} />
           <span className="text-xs uppercase tracking-[0.18em]" style={{ color: "var(--ink)", opacity: 0.55, fontFamily: "var(--font-mono)" }}>{label}</span>
         </span>
-        <span className="flex items-center gap-2 text-sm transition-colors group-hover:text-[color:var(--ember)]" style={{ color: "var(--ink)", fontFamily: "var(--font-mono)" }}>
-          {value} <ArrowUpRight size={14} strokeWidth={1.5} />
+        <span className="flex items-center gap-2 text-[13px] md:text-sm transition-colors group-hover:text-[color:var(--ember)] md:text-right break-words" style={{ color: "var(--ink)", fontFamily: "var(--font-mono)" }}>
+          <span className="break-all md:break-normal">{value}</span> <ArrowUpRight size={14} strokeWidth={1.5} className="shrink-0" />
         </span>
       </a>
     </li>

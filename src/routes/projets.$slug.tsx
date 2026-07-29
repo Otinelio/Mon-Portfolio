@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight, ExternalLink, Github } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { getProject, getNextProject } from "@/config/projects";
 import { ProcessFilmstrip } from "@/components/ProcessFilmstrip";
 import { PhoneMockup } from "@/components/ui/PhoneMockup";
@@ -49,6 +49,10 @@ function ProjectDetail() {
   const next = getNextProject(project.slug);
   const ref = useRef<HTMLDivElement>(null);
   useDeclareSectionTheme(ref, "ink");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [project.slug]);
 
   return (
     <div ref={ref} style={{ backgroundColor: "var(--ink)", color: "var(--paper)" }}>
