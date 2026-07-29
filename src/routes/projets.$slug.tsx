@@ -57,7 +57,7 @@ function ProjectDetail() {
   return (
     <div ref={ref} style={{ backgroundColor: "var(--ink)", color: "var(--paper)" }}>
       {/* Cover */}
-      <section className="relative flex h-[100vh] w-full items-end overflow-hidden">
+      <section className="relative flex h-[100svh] min-h-[500px] w-full items-end overflow-hidden">
         {/* Backdrop Background & Gradients */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.img
@@ -95,18 +95,18 @@ function ProjectDetail() {
         )}
 
         {/* Hero Headline & Metadata - Full width & Prominent */}
-        <div className="relative z-20 w-full px-6 pb-16 lg:px-24">
-          <p className="eyebrow mb-6" style={{ color: "var(--lime)" }}>
+        <div className="relative z-20 w-full px-4 pb-10 sm:px-6 sm:pb-16 lg:px-24">
+          <p className="eyebrow mb-3 sm:mb-6" style={{ color: "var(--lime)" }}>
             {project.index} — {project.client} · {project.year}
           </p>
           <h1 className="display-hero max-w-5xl" style={{ color: "var(--paper)" }}>
             <SplitReveal text={project.title} />
           </h1>
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="mt-4 sm:mt-8 flex flex-wrap gap-2">
             {project.tags.map((t: string) => (
               <span
                 key={t}
-                className="px-3 py-1 text-[10px] uppercase tracking-[0.2em]"
+                className="px-2 py-1 sm:px-3 text-[9px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em]"
                 style={{ backgroundColor: "var(--ember)", color: "var(--ink)", fontFamily: "var(--font-mono)" }}
               >
                 {t}
@@ -117,13 +117,13 @@ function ProjectDetail() {
       </section>
 
       {/* Intro + meta */}
-      <section className="grid grid-cols-1 gap-12 px-6 py-24 lg:grid-cols-12 lg:px-24">
+      <section className="grid grid-cols-1 gap-8 px-4 py-12 sm:px-6 sm:py-20 lg:grid-cols-12 lg:px-24 lg:py-24">
         <SectionReveal className="lg:col-span-8">
-          <p className="max-w-3xl text-2xl leading-snug md:text-3xl" style={{ color: "var(--paper)", fontFamily: "var(--font-display)", fontWeight: 700 }}>
+          <p className="max-w-3xl text-xl leading-snug sm:text-2xl md:text-3xl" style={{ color: "var(--paper)", fontFamily: "var(--font-display)", fontWeight: 700 }}>
             {project.intro}
           </p>
         </SectionReveal>
-        <div className="flex flex-col gap-8 lg:col-span-4">
+        <div className="flex flex-col gap-6 sm:gap-8 lg:col-span-4">
           <MetaBlock label="Stack" items={project.stack} />
           <MetaBlock label="Client" items={[project.client]} />
           <MetaBlock label="Année" items={[project.year]} />
@@ -131,7 +131,7 @@ function ProjectDetail() {
       </section>
 
       {/* Problem / Solution / Outcome */}
-      <section className="grid grid-cols-1 gap-16 border-t border-white/10 px-6 py-24 lg:grid-cols-3 lg:px-24">
+      <section className="grid grid-cols-1 gap-10 border-t border-white/10 px-4 py-12 sm:px-6 sm:py-16 sm:gap-14 lg:grid-cols-3 lg:px-24 lg:py-24 lg:gap-16">
         <Block eyebrow="Problème" title="Le point de départ." body={project.problem} />
         <Block eyebrow="Solution" title="La réponse." body={project.solution} />
         <Block eyebrow="Résultat" title="Ce qui est livré." body={project.outcome} />
@@ -139,8 +139,8 @@ function ProjectDetail() {
 
       {/* Extra Details (Contribution, Key Figures, Unique) */}
       {(project.contribution || project.keyFigures || project.uniqueFeature) && (
-        <section className="grid grid-cols-1 gap-16 border-t border-white/10 px-6 py-24 lg:grid-cols-12 lg:px-24">
-          <div className="flex flex-col gap-12 lg:col-span-8">
+        <section className="grid grid-cols-1 gap-10 border-t border-white/10 px-4 py-12 sm:px-6 sm:py-16 sm:gap-14 lg:grid-cols-12 lg:px-24 lg:py-24 lg:gap-16">
+          <div className="flex flex-col gap-10 sm:gap-12 lg:col-span-8">
             {project.uniqueFeature && (
               <Block eyebrow="Ce qui rend le projet unique" title="L'élément différenciateur." body={project.uniqueFeature} />
             )}
@@ -149,9 +149,9 @@ function ProjectDetail() {
                 <p className="eyebrow mb-4" style={{ color: "var(--ember)" }}>Ma Contribution</p>
                 <ul className="flex flex-col gap-3">
                   {project.contribution.map((c: string, i: number) => (
-                    <li key={i} className="flex gap-4">
-                      <span className="text-[color:var(--lime)]">→</span>
-                      <span className="text-base leading-relaxed" style={{ color: "var(--paper)", opacity: 0.8 }}>{c}</span>
+                    <li key={i} className="flex gap-3">
+                      <span className="shrink-0 text-[color:var(--lime)]">→</span>
+                      <span className="text-sm sm:text-base leading-relaxed" style={{ color: "var(--paper)", opacity: 0.8 }}>{c}</span>
                     </li>
                   ))}
                 </ul>
@@ -160,12 +160,12 @@ function ProjectDetail() {
           </div>
           <div className="lg:col-span-4">
             {project.keyFigures && (
-              <div className="flex flex-col gap-8">
-                <p className="eyebrow" style={{ color: "var(--lime)" }}>Chiffres Clés</p>
+              <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-1 lg:gap-8">
+                <p className="eyebrow col-span-2 lg:col-span-1" style={{ color: "var(--lime)" }}>Chiffres Clés</p>
                 {project.keyFigures.map((k: { label: string; value: string }, i: number) => (
                   <div key={i} className="border-t border-white/10 pt-4">
-                    <p className="mb-1 text-4xl" style={{ fontFamily: "var(--font-display)", fontWeight: 900 }}>{k.value}</p>
-                    <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "var(--paper)", opacity: 0.6, fontFamily: "var(--font-mono)" }}>{k.label}</p>
+                    <p className="mb-1 text-3xl sm:text-4xl" style={{ fontFamily: "var(--font-display)", fontWeight: 900 }}>{k.value}</p>
+                    <p className="text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em]" style={{ color: "var(--paper)", opacity: 0.6, fontFamily: "var(--font-mono)" }}>{k.label}</p>
                   </div>
                 ))}
               </div>
@@ -178,19 +178,19 @@ function ProjectDetail() {
 
       {/* Live + Repo */}
       {(project.liveUrl || project.repoUrl) && (
-        <section className="flex flex-wrap gap-4 border-t border-white/10 px-6 py-16 lg:px-24">
+        <section className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 border-t border-white/10 px-4 py-10 sm:px-6 sm:py-16 lg:px-24">
           {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-[color:var(--lime)] px-6 py-3 text-xs uppercase tracking-[0.2em]" style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}>
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 border border-[color:var(--lime)] px-5 py-3 text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em]" style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}>
               <ExternalLink size={14} strokeWidth={1.5} /> Voir le projet en ligne
             </a>
           )}
           {project.repoUrl && (
-            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.2em]" style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}>
+            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 border border-white/20 px-5 py-3 text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em]" style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}>
               <Github size={14} strokeWidth={1.5} /> {project.backendRepoUrl ? "Code (Front)" : "Code source"}
             </a>
           )}
           {project.backendRepoUrl && (
-            <a href={project.backendRepoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.2em]" style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}>
+            <a href={project.backendRepoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 border border-white/20 px-5 py-3 text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em]" style={{ color: "var(--paper)", fontFamily: "var(--font-mono)" }}>
               <Github size={14} strokeWidth={1.5} /> Code (Back)
             </a>
           )}
@@ -198,17 +198,19 @@ function ProjectDetail() {
       )}
 
       {/* Next project */}
-      <section className="px-6 py-32 lg:px-24 bg-white">
+      <section className="px-4 py-16 sm:px-6 sm:py-24 lg:px-24 lg:py-32 bg-white">
         <p className="eyebrow mb-4 text-orange-500">Projet suivant</p>
-        <Link to="/projets/$slug" params={{ slug: next.slug }} className="group flex items-center gap-6">
-          <h2 className="display-hero transition-colors group-hover:opacity-70" style={{ color: "var(--ink)" }}>
+        <Link to="/projets/$slug" params={{ slug: next.slug }} className="group flex items-center gap-3 sm:gap-6">
+          <h2 className="display-hero flex-1 min-w-0 transition-colors group-hover:opacity-70" style={{ color: "var(--ink)" }}>
             {next.title}
           </h2>
           <motion.div
-            animate={{ x: [0, 15, 0] }}
+            className="shrink-0"
+            animate={{ x: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           >
-            <ArrowRight size={48} strokeWidth={1.5} className="text-orange-500" />
+            <ArrowRight size={28} strokeWidth={1.5} className="text-orange-500 sm:hidden" />
+            <ArrowRight size={48} strokeWidth={1.5} className="text-orange-500 hidden sm:block" />
           </motion.div>
         </Link>
       </section>
@@ -234,12 +236,12 @@ function MetaBlock({ label, items }: { label: string; items: string[] }) {
 function Block({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
   return (
     <SectionReveal>
-      <p className="eyebrow mb-4" style={{ color: "var(--ember)" }}>{eyebrow}</p>
-      <h3 className="mb-6 text-3xl" style={{ fontFamily: "var(--font-display)", fontWeight: 900, letterSpacing: "-0.02em" }}>
+      <p className="eyebrow mb-3 sm:mb-4" style={{ color: "var(--ember)" }}>{eyebrow}</p>
+      <h3 className="mb-4 sm:mb-6 text-2xl sm:text-3xl" style={{ fontFamily: "var(--font-display)", fontWeight: 900, letterSpacing: "-0.02em" }}>
         {title}
       </h3>
-      <p className="text-base leading-relaxed" style={{ color: "var(--paper)", opacity: 0.8 }}>{body}</p>
-      <ArrowUpRight size={20} strokeWidth={1.5} className="mt-6" style={{ color: "var(--lime)" }} />
+      <p className="text-sm sm:text-base leading-relaxed" style={{ color: "var(--paper)", opacity: 0.8 }}>{body}</p>
+      <ArrowUpRight size={18} strokeWidth={1.5} className="mt-4 sm:mt-6" style={{ color: "var(--lime)" }} />
     </SectionReveal>
   );
 }

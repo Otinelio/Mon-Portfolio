@@ -20,7 +20,7 @@ export function ProcessFilmstrip({ images, title, layout = "desktop" }: ProcessF
     <section className="relative" style={{ backgroundColor: "var(--ink)" }}>
       <div ref={rig.wrapperRef} style={{ height: rig.wrapperHeight }} className="relative">
         <div className={rig.isPinned ? "sticky top-0 flex h-screen flex-col justify-center overflow-hidden" : "flex flex-col"}>
-          <div className="mb-6 px-6 lg:px-24">
+          <div className="mb-4 sm:mb-6 px-4 sm:px-6 lg:px-24">
             <SectionReveal delay={0.1}>
               <p className="eyebrow" style={{ color: "var(--lime)" }}>
                 {isMobile ? "Aperçu de l'Application Mobile" : "Process & Galeries"}
@@ -45,7 +45,7 @@ export function ProcessFilmstrip({ images, title, layout = "desktop" }: ProcessF
                       <PhoneMockup
                         src={src}
                         alt={`${title} — écran ${i + 1}`}
-                        heightCss="min(520px, 66vh)"
+                        heightCss="min(420px, 60vh)"
                       />
                       {/* Counter Badge */}
                       <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full border border-white/15 bg-black/80 px-3 py-1 backdrop-blur-md">
@@ -162,7 +162,7 @@ function Lightbox({ images, initialIndex, onClose }: { images: string[]; initial
         <ChevronRight size={24} />
       </button>
 
-      <div className="relative h-[85vh] w-[100vw] md:w-[90vw] max-w-7xl p-4 md:p-12 overflow-hidden" onClick={(e) => e.stopPropagation()}>
+      <div className="relative h-[80vh] sm:h-[85vh] w-full max-w-7xl px-4 sm:p-12 overflow-hidden flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
         <motion.div
           key={`container-${index}`}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -181,7 +181,7 @@ function Lightbox({ images, initialIndex, onClose }: { images: string[]; initial
             className="h-full w-full object-contain pointer-events-none"
           />
         </motion.div>
-        <div className="absolute bottom-0 md:bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-black/60 px-4 py-2 text-xs tracking-[0.2em] text-white backdrop-blur-md" style={{ fontFamily: "var(--font-mono)" }}>
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-black/60 px-4 py-2 text-xs tracking-[0.2em] text-white backdrop-blur-md z-10" style={{ fontFamily: "var(--font-mono)" }}>
           <span style={{ color: "var(--lime)" }}>{String(index + 1).padStart(2, "0")}</span>
           <span className="opacity-50"> / {String(images.length).padStart(2, "0")}</span>
         </div>
