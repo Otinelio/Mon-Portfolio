@@ -60,7 +60,12 @@ function Contact() {
             </h1>
 
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={(e) => { 
+                e.preventDefault(); 
+                const text = `Bonjour, je suis ${form.name}.\n\n${form.message}\n\nMon email : ${form.email}`;
+                window.open(`https://wa.me/22898472701?text=${encodeURIComponent(text)}`, '_blank');
+                setSent(true); 
+              }}
               className="flex max-w-xl flex-col gap-10"
             >
               <UnderlineField label="Votre nom" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
@@ -68,14 +73,14 @@ function Contact() {
               <UnderlineField label="Votre message" multiline value={form.message} onChange={(v) => setForm({ ...form, message: v })} />
               <button
                 type="submit"
-                className="magnetic-btn inline-flex w-fit items-center gap-3 border border-[color:var(--ink)] px-6 py-4 text-xs uppercase tracking-[0.2em] transition-colors hover:bg-[color:var(--ink)] hover:text-[color:var(--paper)]"
+                className="magnetic-btn inline-flex w-fit items-center gap-3 border border-[color:var(--ink)] px-6 py-4 text-xs uppercase tracking-[0.2em] transition-colors hover:bg-[color:var(--ember)] hover:border-[color:var(--ember)] hover:text-[color:var(--paper)]"
                 style={{ fontFamily: "var(--font-mono)", color: "var(--ink)" }}
               >
-                Envoyer le message <ArrowUpRight size={16} strokeWidth={1.5} />
+                Envoyer via WhatsApp <ArrowUpRight size={16} strokeWidth={1.5} />
               </button>
               {sent && (
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs uppercase tracking-[0.18em]" style={{ color: "var(--ember)", fontFamily: "var(--font-mono)" }}>
-                  → Merci. Message pris en compte (démo — brancher un endpoint).
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm uppercase tracking-[0.18em] font-semibold" style={{ color: "var(--ember)", fontFamily: "var(--font-mono)" }}>
+                  → Redirection vers WhatsApp en cours...
                 </motion.p>
               )}
             </form>

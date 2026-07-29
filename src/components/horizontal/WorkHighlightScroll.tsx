@@ -7,7 +7,8 @@ import { useRef } from "react";
 import { useDeclareSectionTheme } from "@/hooks/useSectionTheme";
 
 export function WorkHighlightScroll() {
-  const rig = useHorizontalScrollRig(projects.length, { travelPerItem: 280 });
+  const featured = projects.slice(0, 5);
+  const rig = useHorizontalScrollRig(featured.length, { travelPerItem: 280 });
   const ref = useRef<HTMLElement>(null);
   useDeclareSectionTheme(ref, "ink");
 
@@ -19,7 +20,7 @@ export function WorkHighlightScroll() {
           <div className="flex shrink-0 items-end justify-between px-6 pb-10 pt-24 lg:px-24">
             <div>
               <p className="eyebrow mb-4" style={{ color: "var(--lime)" }}>
-                Sélection — {String(projects.length).padStart(2, "0")}
+                Sélection — {String(featured.length).padStart(2, "0")}
               </p>
               <h2 className="display-section" style={{ color: "var(--paper)" }}>
                 Projets sélectionnés
@@ -55,7 +56,7 @@ export function WorkHighlightScroll() {
               className={rig.isPinned ? "flex items-center gap-6 px-6 lg:px-24" : "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 py-16"}
               style={rig.isPinned ? { x: rig.x, willChange: "transform" } : undefined}
             >
-              {projects.map((p) => (
+              {featured.map((p) => (
                 <Link
                   key={p.slug}
                   to="/projets/$slug"
@@ -63,11 +64,12 @@ export function WorkHighlightScroll() {
                   className="group relative block h-[52vh] w-[62vw] shrink-0 overflow-hidden md:w-[36vw] lg:w-[26vw]"
                 >
                   <img src={p.cover} alt={p.title} loading="lazy" className="bw-hover-ember h-full w-full object-cover" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 flex items-baseline justify-between p-4">
-                    <h3 className="text-xl font-black tracking-tight" style={{ color: "var(--paper)", fontFamily: "var(--font-display)" }}>
+                    <h3 className="text-xl font-black tracking-tight" style={{ color: "var(--lime)", fontFamily: "var(--font-display)", textShadow: "0px 4px 12px rgba(0,0,0,0.9)" }}>
                       {p.title}
                     </h3>
-                    <span className="text-xs" style={{ color: "var(--lime)", fontFamily: "var(--font-mono)" }}>{p.index}</span>
+                    <span className="text-xs" style={{ color: "var(--lime)", fontFamily: "var(--font-mono)", textShadow: "0px 2px 4px rgba(0,0,0,0.8)" }}>{p.index}</span>
                   </div>
                 </Link>
               ))}

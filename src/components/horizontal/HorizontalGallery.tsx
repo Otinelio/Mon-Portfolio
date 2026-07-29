@@ -77,13 +77,13 @@ function ProjectCard({ project }: { project: Project }) {
         loading="lazy"
         className="bw-hover-ember h-full w-full object-cover"
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-6">
-        <div className="flex items-center justify-between text-xs uppercase tracking-[0.18em]" style={{ fontFamily: "var(--font-mono)", color: "var(--paper)" }}>
+        <div className="flex items-center justify-between text-xs uppercase tracking-[0.18em]" style={{ fontFamily: "var(--font-mono)", color: "var(--paper)", textShadow: "0px 2px 4px rgba(0,0,0,0.8)" }}>
           <span style={{ color: "var(--lime)" }}>{project.index}</span>
           <span>{project.year}</span>
         </div>
-        <h3 className="display-section" style={{ color: "var(--paper)", fontSize: "clamp(1.8rem, 3vw, 3rem)" }}>
+        <h3 className="display-section" style={{ color: "var(--lime)", fontSize: "clamp(1.8rem, 3vw, 3rem)", textShadow: "0px 4px 12px rgba(0,0,0,0.9)" }}>
           {project.title}
         </h3>
         <div className="flex items-center gap-2">

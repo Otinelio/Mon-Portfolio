@@ -65,7 +65,7 @@ export function ResumeSection() {
                         {exp.role}
                       </h3>
                       <p className="mt-2 text-xl font-medium" style={{ color: "var(--paper)", opacity: 0.8 }}>
-                        chez {exp.company}
+                        {exp.company === "Projet académique" ? exp.company : `chez ${exp.company}`}
                       </p>
                       <ul className={`mt-8 flex flex-col gap-5 ${isEven ? 'lg:items-start' : 'lg:items-end'}`}>
                         {exp.tasks.map((task, j) => (

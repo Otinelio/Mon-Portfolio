@@ -4,7 +4,7 @@ import { useScroll, useTransform, type MotionValue } from "framer-motion";
 /**
  * Shared engineering for every pinned horizontal scroll section.
  * Returns refs + a horizontal x MotionValue driven by vertical scroll.
- * Falls back to native horizontal overflow on touch / reduced motion.
+ * Falls back to native horizontal overflow only on reduced motion.
  */
 export function useHorizontalScrollRig(
   itemCount: number,
@@ -19,7 +19,7 @@ export function useHorizontalScrollRig(
   scrollNext: () => void;
   scrollPrev: () => void;
 } {
-  const { travelPerItem = 380, overscan = 1 } = opts;
+  const { travelPerItem = 600, overscan = 1 } = opts;
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [isPinned, setIsPinned] = useState(true);
@@ -28,9 +28,8 @@ export function useHorizontalScrollRig(
   const [winW, setWinW] = useState(0);
 
   useEffect(() => {
-    const touch = window.matchMedia("(pointer: coarse)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setIsPinned(!touch && !reduced);
+    setIsPinned(!reduced);
     setViewportH(window.innerHeight);
     setWinW(window.innerWidth);
     const onResize = () => {

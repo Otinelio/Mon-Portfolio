@@ -355,7 +355,7 @@ export function Footer() {
           className="flex flex-col justify-between gap-4 px-6 pb-8 text-xs uppercase tracking-[0.2em] md:flex-row lg:px-24"
           style={{ color: "var(--paper)", opacity: 0.35, fontFamily: "var(--font-mono)" }}
         >
-          <span>© {new Date().getFullYear()} DigitalVision — Kengbo Othnelio Raphaëlo.</span>
+          <span>© {new Date().getFullYear()} Kengbo Othnelio Raphaëlo.</span>
           <span>Lomé, Togo</span>
         </div>
       </div>
